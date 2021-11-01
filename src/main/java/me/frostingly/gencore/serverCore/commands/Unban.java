@@ -22,7 +22,7 @@ public class Unban implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("unban")) {
-            if (sender.hasPermission("server.unban")) {
+            if (sender.hasPermission("gencore.command.unban")) {
                 if (args.length == 0) {
                     sender.sendMessage(ChatColor.RED + "Usage: /unban <player>");
                 } else {

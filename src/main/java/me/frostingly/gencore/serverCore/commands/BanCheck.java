@@ -22,7 +22,7 @@ public class BanCheck implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("bancheck")) {
-            if (sender.hasPermission("server.bancheck")) {
+            if (sender.hasPermission("gencore.command.bancheck")) {
                 if (args.length == 0) {
                     sender.sendMessage(ChatColor.RED + "Usage: /bancheck <player>");
                 } else {

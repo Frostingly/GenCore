@@ -22,7 +22,7 @@ public class Ban implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("ban")) {
-            if (sender.hasPermission("server.ban")) {
+            if (sender.hasPermission("gencore.command.ban")) {
                 Component unsuccessfulBan = Component.text("Could not ban that player either because they don't exist or are already banned").color(TextColor.fromHexString("#fc5454"));
                 Component reasonNotSpecified = Component.text("Please specify a reason.").color(TextColor.fromHexString("#fc5454"));
                 if (args.length == 0) {

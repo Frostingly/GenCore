@@ -56,40 +56,48 @@ public class PluginCMD implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("gencore") || cmd.getName().equalsIgnoreCase("gc")) {
-            if (sender.hasPermission("gencore.*")) {
+            if (sender.hasPermission("gencore.command")) {
                 switch (args[0]) {
                     case "wand":
-                        switch (args[1]) {
-                            case "give":
-                                String playerName = args[2];
-                                if (playerName != null || Bukkit.getPlayer(playerName) != null) {
-                                    Player player = Bukkit.getPlayer(playerName);
+                        if (sender.hasPermission("gencore.command.wand")) {
+                            switch (args[1]) {
+                                case "give":
+                                    String playerName = args[2];
+                                    if (playerName != null || Bukkit.getPlayer(playerName) != null) {
+                                        Player player = Bukkit.getPlayer(playerName);
 
-                                    player.getInventory().addItem(createSellWand());
-                                    sender.sendMessage(Utilities.format("&aSuccessfully given " + player.getName() + " a sell wand!"));
+                                        player.getInventory().addItem(createSellWand());
+                                        sender.sendMessage(Utilities.format("&aSuccessfully given " + player.getName() + " a sell wand!"));
 
-                                } else {
-                                    //code if playername doesn't match
-                                }
-                                break;
+                                    } else {
+                                        //code if playername doesn't match
+                                    }
+                                    break;
+                            }
+                        } else {
+                            sender.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
                         }
                         break;
                     case "gen":
-                        switch (args[1]) {
-                            case "give":
-                                String playerName = args[3];
-                                if (playerName != null || Bukkit.getPlayer(playerName) != null) {
-                                    Player player = Bukkit.getPlayer(playerName);
+                        if (sender.hasPermission("gencore.gens")) {
+                            switch (args[1]) {
+                                case "give":
+                                    String playerName = args[3];
+                                    if (playerName != null || Bukkit.getPlayer(playerName) != null) {
+                                        Player player = Bukkit.getPlayer(playerName);
 
-                                    player.getInventory().addItem(plugin.getGens().get(args[2]).getItemStack());
-                                } else {
-                                    //code if playername doesn't match
-                                }
-                                break;
+                                        player.getInventory().addItem(plugin.getGens().get(args[2]).getItemStack());
+                                    } else {
+                                        //code if playername doesn't match
+                                    }
+                                    break;
+                            }
+                        } else {
+                            sender.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
                         }
                         break;
                     case "reload":
-                        if (sender.hasPermission("gencore.reload")) {
+                        if (sender.hasPermission("gencore.command.reload")) {
                             new ConfigVariables(plugin).registerVariables();
                             new RegisterFunctions(plugin).regFunctions();
                             new RegisterTypes(plugin).regTypes();
@@ -100,57 +108,61 @@ public class PluginCMD implements CommandExecutor {
                         }
                         break;
                     case "resetgens":
-                        String playerName = args[1];
-                        if (playerName != null) {
-                            Player player = Bukkit.getPlayer(playerName);
-                            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
-                            boolean found = false;
-                            boolean gensFound = false;
+                        if (sender.hasPermission("gencore.gens.reset")) {
+                            String playerName = args[1];
+                            if (playerName != null) {
+                                Player player = Bukkit.getPlayer(playerName);
+                                OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+                                boolean found = false;
+                                boolean gensFound = false;
 
-                            for (EcoPlayer ecoPlayer : plugin.getEcoPlayers()) {
-                                if (player != null) {
-                                    if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
-                                        found = true;
-                                        if (ecoPlayer.getOwnedGens().size() > 0) {
-                                            gensFound = true;
-                                            for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
-                                                ecoPlayer.getOwnedGens().get(i).getLocation().getBlock().setType(Material.AIR);
-                                                ecoPlayer.getOwnedGens().get(i).setActive(true);
-                                                ecoPlayer.getOwnedGens().get(i).getArmorStand().remove();
+                                for (EcoPlayer ecoPlayer : plugin.getEcoPlayers()) {
+                                    if (player != null) {
+                                        if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
+                                            found = true;
+                                            if (ecoPlayer.getOwnedGens().size() > 0) {
+                                                gensFound = true;
+                                                for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
+                                                    ecoPlayer.getOwnedGens().get(i).getLocation().getBlock().setType(Material.AIR);
+                                                    ecoPlayer.getOwnedGens().get(i).setActive(true);
+                                                    ecoPlayer.getOwnedGens().get(i).getArmorStand().remove();
+                                                }
+                                                ecoPlayer.getOwnedGens().clear();
                                             }
-                                            ecoPlayer.getOwnedGens().clear();
                                         }
-                                    }
-                                } else {
-                                    if (ecoPlayer.getOwner().equalsIgnoreCase(offlinePlayer.getUniqueId().toString())) {
-                                        found = true;
-                                        if (ecoPlayer.getOwnedGens().size() > 0) {
-                                            gensFound = true;
-                                            for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
-                                                ecoPlayer.getOwnedGens().get(i).getLocation().getBlock().setType(Material.AIR);
-                                                ecoPlayer.getOwnedGens().get(i).setActive(true);
-                                                ecoPlayer.getOwnedGens().get(i).getArmorStand().remove();
+                                    } else {
+                                        if (ecoPlayer.getOwner().equalsIgnoreCase(offlinePlayer.getUniqueId().toString())) {
+                                            found = true;
+                                            if (ecoPlayer.getOwnedGens().size() > 0) {
+                                                gensFound = true;
+                                                for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
+                                                    ecoPlayer.getOwnedGens().get(i).getLocation().getBlock().setType(Material.AIR);
+                                                    ecoPlayer.getOwnedGens().get(i).setActive(true);
+                                                    ecoPlayer.getOwnedGens().get(i).getArmorStand().remove();
+                                                }
+                                                ecoPlayer.getOwnedGens().clear();
                                             }
-                                            ecoPlayer.getOwnedGens().clear();
                                         }
                                     }
                                 }
-                            }
 
-                            if (found) {
-                                if (gensFound) {
-                                    sender.sendMessage(Utilities.format("&aSuccessfully removed all gens from " + playerName));
-                                    if (player != null) {
-                                        new Scoreboard(plugin).createScoreboard(player);
+                                if (found) {
+                                    if (gensFound) {
+                                        sender.sendMessage(Utilities.format("&aSuccessfully removed all gens from " + playerName));
+                                        if (player != null) {
+                                            new Scoreboard(plugin).createScoreboard(player);
+                                        }
+                                    } else {
+                                        sender.sendMessage(Utilities.format("&cCould not find any gens placed by a player by the name " + playerName));
                                     }
                                 } else {
-                                    sender.sendMessage(Utilities.format("&cCould not find any gens placed by a player by the name " + playerName));
+                                    sender.sendMessage(Utilities.format("&cCould not find a player by the name " + playerName));
                                 }
                             } else {
-                                sender.sendMessage(Utilities.format("&cCould not find a player by the name " + playerName));
+                                //code if playername doesn't match
                             }
                         } else {
-                            //code if playername doesn't match
+                            sender.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
                         }
                         break;
                 }

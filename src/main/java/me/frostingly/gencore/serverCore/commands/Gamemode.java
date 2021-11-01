@@ -22,7 +22,7 @@ public class Gamemode implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("gamemode") || cmd.getName().equalsIgnoreCase("gm")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("gencore.gamemode")) {
+                if (player.hasPermission("gencore.command.gamemode")) {
                     if (args.length < 1) {
                         player.sendMessage(Utilities.format(ConfigVariables.INCORRECT_CMD_USAGE.getString(".gamemode_cmd.message")));
                     } else {
@@ -62,7 +62,7 @@ public class Gamemode implements CommandExecutor {
         } else if (cmd.getName().equalsIgnoreCase("gmc")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("gencore.gamemode")) {
+                if (player.hasPermission("gencore.command.gamemode.creative")) {
                     switchGamemode(player, GameMode.CREATIVE);
                 } else {
                     player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
@@ -73,7 +73,7 @@ public class Gamemode implements CommandExecutor {
         } else if (cmd.getName().equalsIgnoreCase("gms")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("gencore.gamemode")) {
+                if (player.hasPermission("gencore.command.gamemode.survival")) {
                     switchGamemode(player, GameMode.SURVIVAL);
                 } else {
                     player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
@@ -84,7 +84,7 @@ public class Gamemode implements CommandExecutor {
         } else if (cmd.getName().equalsIgnoreCase("gma")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("gencore.gamemode")) {
+                if (player.hasPermission("gencore.command.gamemode.adventure")) {
                     switchGamemode(player, GameMode.ADVENTURE);
                 } else {
                     player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
@@ -95,7 +95,7 @@ public class Gamemode implements CommandExecutor {
         } else if (cmd.getName().equalsIgnoreCase("gmsp")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (player.hasPermission("gencore.gamemode")) {
+                if (player.hasPermission("gencore.command.gamemode.spectator")) {
                     switchGamemode(player, GameMode.SPECTATOR);
                 } else {
                     player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
