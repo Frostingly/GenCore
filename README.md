@@ -36,6 +36,8 @@ This core contains customizable generators, support for luckperms ranks, a chat 
 <br />
 `gencore.command.gens` >> Access to the **/gc gen** command.
 <br />
+`gencore.command.balance` >> Access to the **/gc balance** command.
+<br />
 `gencore.command.wipe` >> Access to the **/gc wipe** command.
 <br />
 `gencore.command.ban` >> Access to the **/ban** command.

@@ -21,3 +21,5 @@ messages:
   INCORRECT_CMD_USAGE:
     gamemode_cmd:
       message: "&c/gamemode <creative|survival|adventure|spectator>"
+    plugin_cmd:
+      message: "&c/gc <reload|wand|gen|balance|wipe>"
