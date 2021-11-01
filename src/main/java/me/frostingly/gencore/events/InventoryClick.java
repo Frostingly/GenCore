@@ -1,7 +1,7 @@
 package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.inventoryHandler.InventoryHandler;
+import me.frostingly.gencore.inventoryhandler.InventoryHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

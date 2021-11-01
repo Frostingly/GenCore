@@ -1,7 +1,7 @@
-package me.frostingly.gencore.playerData;
+package me.frostingly.gencore.playerdata;
 
-import me.frostingly.gencore.genData.Gen;
-import me.frostingly.gencore.inventoryHandler.PlayerMenuUtility;
+import me.frostingly.gencore.gendata.Gen;
+import me.frostingly.gencore.inventoryhandler.PlayerMenuUtility;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

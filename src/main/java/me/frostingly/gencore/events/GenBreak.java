@@ -2,8 +2,8 @@ package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.playerData.EcoPlayer;
-import me.frostingly.gencore.serverCore.Scoreboard;
+import me.frostingly.gencore.playerdata.EcoPlayer;
+import me.frostingly.gencore.servercore.Scoreboard;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

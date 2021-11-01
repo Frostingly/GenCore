@@ -1,12 +1,12 @@
 package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.genData.Gen;
-import me.frostingly.gencore.genData.Upgrades;
-import me.frostingly.gencore.playerData.EcoPlayer;
+import me.frostingly.gencore.gendata.Gen;
+import me.frostingly.gencore.gendata.Upgrades;
+import me.frostingly.gencore.playerdata.EcoPlayer;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.serverCore.ConfigVariables;
-import me.frostingly.gencore.serverCore.Scoreboard;
+import me.frostingly.gencore.servercore.ConfigVariables;
+import me.frostingly.gencore.servercore.Scoreboard;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;

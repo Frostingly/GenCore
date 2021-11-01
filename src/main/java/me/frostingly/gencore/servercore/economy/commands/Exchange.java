@@ -1,9 +1,9 @@
-package me.frostingly.gencore.serverCore.economy.commands;
+package me.frostingly.gencore.servercore.economy.commands;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.inventories.ExchangeMenu;
-import me.frostingly.gencore.playerData.EcoPlayer;
-import me.frostingly.gencore.serverCore.ConfigVariables;
+import me.frostingly.gencore.playerdata.EcoPlayer;
+import me.frostingly.gencore.servercore.ConfigVariables;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,8 +1,8 @@
 package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.serverCore.commands.PluginCMD;
-import me.frostingly.gencore.serverCore.economy.SellMethods;
+import me.frostingly.gencore.servercore.commands.PluginCMD;
+import me.frostingly.gencore.servercore.economy.SellMethods;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

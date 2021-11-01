@@ -1,4 +1,4 @@
-package me.frostingly.gencore.genData;
+package me.frostingly.gencore.gendata;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;

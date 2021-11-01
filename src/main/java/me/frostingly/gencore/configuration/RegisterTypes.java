@@ -1,9 +1,9 @@
 package me.frostingly.gencore.configuration;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.genData.Type;
-import me.frostingly.gencore.genData.UpgradeType;
-import me.frostingly.gencore.genData.Upgrades;
+import me.frostingly.gencore.gendata.Type;
+import me.frostingly.gencore.gendata.UpgradeType;
+import me.frostingly.gencore.gendata.Upgrades;
 import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;

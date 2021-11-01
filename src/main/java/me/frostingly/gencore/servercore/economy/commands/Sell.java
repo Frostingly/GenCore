@@ -1,8 +1,8 @@
-package me.frostingly.gencore.serverCore.economy.commands;
+package me.frostingly.gencore.servercore.economy.commands;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.serverCore.ConfigVariables;
-import me.frostingly.gencore.serverCore.economy.SellMethods;
+import me.frostingly.gencore.servercore.ConfigVariables;
+import me.frostingly.gencore.servercore.economy.SellMethods;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

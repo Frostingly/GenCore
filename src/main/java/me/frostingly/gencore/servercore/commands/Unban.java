@@ -1,4 +1,4 @@
-package me.frostingly.gencore.serverCore.commands;
+package me.frostingly.gencore.servercore.commands;
 
 import me.frostingly.gencore.GenCore;
 import net.kyori.adventure.text.Component;

@@ -1,4 +1,4 @@
-package me.frostingly.gencore.serverCore;
+package me.frostingly.gencore.servercore;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;

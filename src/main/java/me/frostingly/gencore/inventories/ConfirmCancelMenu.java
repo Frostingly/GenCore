@@ -2,8 +2,8 @@ package me.frostingly.gencore.inventories;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.inventoryHandler.InventoryHandler;
-import me.frostingly.gencore.inventoryHandler.PlayerMenuUtility;
+import me.frostingly.gencore.inventoryhandler.InventoryHandler;
+import me.frostingly.gencore.inventoryhandler.PlayerMenuUtility;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

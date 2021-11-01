@@ -2,12 +2,11 @@ package me.frostingly.gencore.configuration;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.genData.Gen;
-import me.frostingly.gencore.genData.Type;
-import me.frostingly.gencore.genData.Upgrades;
+import me.frostingly.gencore.gendata.Gen;
+import me.frostingly.gencore.gendata.Type;
+import me.frostingly.gencore.gendata.Upgrades;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

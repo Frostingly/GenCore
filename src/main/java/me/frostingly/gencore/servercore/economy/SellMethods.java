@@ -1,11 +1,11 @@
-package me.frostingly.gencore.serverCore.economy;
+package me.frostingly.gencore.servercore.economy;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.genData.Type;
-import me.frostingly.gencore.playerData.EcoPlayer;
-import me.frostingly.gencore.serverCore.ConfigVariables;
-import me.frostingly.gencore.serverCore.Scoreboard;
+import me.frostingly.gencore.gendata.Type;
+import me.frostingly.gencore.playerdata.EcoPlayer;
+import me.frostingly.gencore.servercore.ConfigVariables;
+import me.frostingly.gencore.servercore.Scoreboard;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

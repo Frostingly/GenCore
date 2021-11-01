@@ -1,11 +1,11 @@
 package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.genData.Gen;
-import me.frostingly.gencore.inventoryHandler.PlayerMenuUtility;
-import me.frostingly.gencore.playerData.EcoPlayer;
-import me.frostingly.gencore.serverCore.ConfigVariables;
-import me.frostingly.gencore.serverCore.Scoreboard;
+import me.frostingly.gencore.gendata.Gen;
+import me.frostingly.gencore.inventoryhandler.PlayerMenuUtility;
+import me.frostingly.gencore.playerdata.EcoPlayer;
+import me.frostingly.gencore.servercore.ConfigVariables;
+import me.frostingly.gencore.servercore.Scoreboard;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;

@@ -1,8 +1,8 @@
-package me.frostingly.gencore.serverCore.commands;
+package me.frostingly.gencore.servercore.commands;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.serverCore.ConfigVariables;
+import me.frostingly.gencore.servercore.ConfigVariables;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,4 +1,4 @@
-package me.frostingly.gencore.inventoryHandler;
+package me.frostingly.gencore.inventoryhandler;
 
 import org.bukkit.entity.Player;
 

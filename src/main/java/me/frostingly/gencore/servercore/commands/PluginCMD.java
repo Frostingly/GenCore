@@ -1,13 +1,13 @@
-package me.frostingly.gencore.serverCore.commands;
+package me.frostingly.gencore.servercore.commands;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
 import me.frostingly.gencore.configuration.RegisterFunctions;
 import me.frostingly.gencore.configuration.RegisterGens;
 import me.frostingly.gencore.configuration.RegisterTypes;
-import me.frostingly.gencore.playerData.EcoPlayer;
-import me.frostingly.gencore.serverCore.ConfigVariables;
-import me.frostingly.gencore.serverCore.Scoreboard;
+import me.frostingly.gencore.playerdata.EcoPlayer;
+import me.frostingly.gencore.servercore.ConfigVariables;
+import me.frostingly.gencore.servercore.Scoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;

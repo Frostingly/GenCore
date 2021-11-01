@@ -1,8 +1,8 @@
-package me.frostingly.gencore.serverCore;
+package me.frostingly.gencore.servercore;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
-import me.frostingly.gencore.playerData.EcoPlayer;
+import me.frostingly.gencore.playerdata.EcoPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;

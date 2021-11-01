@@ -2,8 +2,8 @@ package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.inventories.GenMenu;
-import me.frostingly.gencore.inventoryHandler.PlayerMenuUtility;
-import me.frostingly.gencore.playerData.EcoPlayer;
+import me.frostingly.gencore.inventoryhandler.PlayerMenuUtility;
+import me.frostingly.gencore.playerdata.EcoPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
