@@ -36,11 +36,11 @@ This core contains customizable generators, support for luckperms ranks, a chat 
 <br />
 `gencore.command.gens` >> Access to the **/gc gen** command.
 <br />
-`gencore.command.ban` >> Access to the **/gc ban** command.
+`gencore.command.ban` >> Access to the **/ban** command.
 <br />
-`gencore.command.bancheck` >> Access to the **/gc bancheck** command.
+`gencore.command.bancheck` >> Access to the **/bancheck** command.
 <br />
-`gencore.command.unban` >> Access to the **/gc unban** command.
+`gencore.command.unban` >> Access to the **/unban** command.
 <br />
 `gencore.command.gamemode` >> Access to the **/gamemode** command.
 <br />
