@@ -7,6 +7,7 @@ import me.frostingly.gencore.genData.Type;
 import me.frostingly.gencore.genData.Upgrades;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -25,7 +26,7 @@ public class RegisterGens {
 
     public void regGens() {
         File root = new File(plugin.getDataFolder(), "gens");
-        if (root.listFiles().length > 0) {
+        if (root.listFiles() != null) {
             for (File genFile : root.listFiles()) {
                 Configuration config = YamlConfiguration.loadConfiguration(genFile);
                 boolean genTypeExists = false;
@@ -91,6 +92,13 @@ public class RegisterGens {
                 if (!genTypeExists) {
                     System.out.println(Utilities.format("&cError: Cannot find type " + config.getString("gen.type") + " in our indexes, gens who rely on type type shall not be indexed as well."));
                 }
+            }
+        } else {
+            File configFile = null;
+            configFile = new File(this.plugin.getDataFolder(), "gens/starter_gen.yml");
+
+            if (!configFile.exists()) {
+                this.plugin.saveResource("gens/starter_gen.yml", false);
             }
         }
     }

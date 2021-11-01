@@ -1,6 +1,6 @@
 gen:
-  id: "coal_gen"
-  type: "COAL"
+  id: "starter_gen"
+  type: "STARTER_GEN"
 
   upgrades:
     SPEED: 2

@@ -28,28 +28,60 @@ public class Gamemode implements CommandExecutor {
                     } else {
                         switch (args[0]) {
                             case "creative":
-                                switchGamemode(player, GameMode.CREATIVE);
+                                if (player.hasPermission("gencore.command.gamemode.creative")) {
+                                    switchGamemode(player, GameMode.CREATIVE);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "c":
-                                switchGamemode(player, GameMode.CREATIVE);
+                                if (player.hasPermission("gencore.command.gamemode.creative")) {
+                                    switchGamemode(player, GameMode.CREATIVE);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "survival":
-                                switchGamemode(player, GameMode.SURVIVAL);
+                                if (player.hasPermission("gencore.command.gamemode.survival")) {
+                                    switchGamemode(player, GameMode.SURVIVAL);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "s":
-                                switchGamemode(player, GameMode.SURVIVAL);
+                                if (player.hasPermission("gencore.command.gamemode.survival")) {
+                                    switchGamemode(player, GameMode.SURVIVAL);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "adventure":
-                                switchGamemode(player, GameMode.ADVENTURE);
+                                if (player.hasPermission("gencore.command.gamemode.adventure")) {
+                                    switchGamemode(player, GameMode.ADVENTURE);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "a":
-                                switchGamemode(player, GameMode.ADVENTURE);
+                                if (player.hasPermission("gencore.command.gamemode.adventure")) {
+                                    switchGamemode(player, GameMode.ADVENTURE);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "spectator":
-                                switchGamemode(player, GameMode.SPECTATOR);
+                                if (player.hasPermission("gencore.command.gamemode.spectator")) {
+                                    switchGamemode(player, GameMode.SPECTATOR);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                             case "sp":
-                                switchGamemode(player, GameMode.SPECTATOR);
+                                if (player.hasPermission("gencore.command.gamemode.spectator")) {
+                                    switchGamemode(player, GameMode.SPECTATOR);
+                                } else {
+                                    player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                                }
                                 break;
                         }
                     }

@@ -1,6 +1,6 @@
 type:
   display_name: "&0Coal Gen"
-  type: "COAL"
+  type: "STARTER_GEN"
   display_block: COAL_BLOCK
   output_item: "function(createBasicCoal)"
 

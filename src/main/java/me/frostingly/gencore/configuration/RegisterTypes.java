@@ -23,7 +23,7 @@ public class RegisterTypes {
 
     public void regTypes() {
         File root = new File(plugin.getDataFolder(), "types");
-        if (root.listFiles().length > 0) {
+        if (root.listFiles() != null) {
             for (File typeFile : root.listFiles()) {
                 Configuration config = YamlConfiguration.loadConfiguration(typeFile);
                 int speed = 1;
@@ -55,6 +55,13 @@ public class RegisterTypes {
                         purchasableUpgrades
                         );
                 plugin.getTypes().put(type.getType(), type);
+            }
+        } else {
+            File configFile = null;
+            configFile = new File(this.plugin.getDataFolder(), "types/starter_gen_type.yml");
+
+            if (!configFile.exists()) {
+                this.plugin.saveResource("types/starter_gen_type.yml", false);
             }
         }
     }

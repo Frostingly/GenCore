@@ -16,12 +16,19 @@ public class RegisterFunctions {
 
     public void regFunctions() {
         File root = new File(plugin.getDataFolder(), "functions");
-        if (root.listFiles().length > 0) {
+        if (root.listFiles() != null) {
             for (File functionFile : root.listFiles()) {
                 if (functionFile.isFile()) {
                     Configuration config = YamlConfiguration.loadConfiguration(functionFile);
                     plugin.getFunctions().put(functionFile.getName().replace(".yml", ""), config);
                 }
+            }
+        } else {
+            File configFile = null;
+            configFile = new File(this.plugin.getDataFolder(), "functions/createBasicCoal.yml");
+
+            if (!configFile.exists()) {
+                this.plugin.saveResource("functions/createBasicCoal.yml", false);
             }
         }
     }
