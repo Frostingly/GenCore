@@ -70,4 +70,8 @@ public class EcoPlayer {
     public PlayerMenuUtility getPlayerMenuUtility() {
         return playerMenuUtility;
     }
+
+    public void setPlayerMenuUtility(PlayerMenuUtility playerMenuUtility) {
+        this.playerMenuUtility = playerMenuUtility;
+    }
 }

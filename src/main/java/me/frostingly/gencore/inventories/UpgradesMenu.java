@@ -82,6 +82,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                 inventory.setItem(11, createSpeedItem(upgrade.getTokensNeeded()));
                                                 ecoPlayer.setTokens(ecoPlayer.getTokens() - upgrade.getTokensNeeded());
                                                 new Scoreboard(plugin).createScoreboard(player);
+                                                plugin.output(gen);
                                             } else {
                                                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
                                                 player.sendMessage(ConfigVariables.NOT_ENOUGH_TOKENS_MESSAGE);
@@ -113,6 +114,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                     .replace("{level}", String.valueOf(this.gen.getUpgrades().getSpeed())));
                                             inventory.setItem(11, createSpeedItem(upgrade.getTokensNeeded()));
                                             new Scoreboard(plugin).createScoreboard(player);
+                                            plugin.output(gen);
                                         }
                                     } else {
                                         player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
@@ -161,6 +163,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                 inventory.setItem(12, createOutputQualityItem(upgrade.getTokensNeeded()));
                                                 ecoPlayer.setTokens(ecoPlayer.getTokens() - upgrade.getTokensNeeded());
                                                 new Scoreboard(plugin).createScoreboard(player);
+                                                plugin.output(gen);
                                             } else {
                                                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
                                                 player.sendMessage(ConfigVariables.NOT_ENOUGH_TOKENS_MESSAGE);
@@ -192,6 +195,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                     .replace("{level}", this.gen.getUpgrades().getQuality()));
                                             inventory.setItem(12, createOutputQualityItem(upgrade.getTokensNeeded()));
                                             new Scoreboard(plugin).createScoreboard(player);
+                                            plugin.output(gen);
                                         }
                                     } else {
                                         player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
@@ -240,6 +244,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                 inventory.setItem(13, createOutputItem(upgrade.getTokensNeeded()));
                                                 ecoPlayer.setTokens(ecoPlayer.getTokens() - upgrade.getTokensNeeded());
                                                 new Scoreboard(plugin).createScoreboard(player);
+                                                plugin.output(gen);
                                             } else {
                                                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
                                                 player.sendMessage(ConfigVariables.NOT_ENOUGH_TOKENS_MESSAGE);
@@ -271,6 +276,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                     .replace("{level}", String.valueOf(this.gen.getUpgrades().getQuantity())));
                                             inventory.setItem(13, createOutputItem(upgrade.getTokensNeeded()));
                                             new Scoreboard(plugin).createScoreboard(player);
+                                            plugin.output(gen);
                                         }
                                     } else {
                                         player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
@@ -319,6 +325,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                 inventory.setItem(14, createMoneyFlyItem(upgrade.getTokensNeeded()));
                                                 ecoPlayer.setTokens(ecoPlayer.getTokens() - upgrade.getTokensNeeded());
                                                 new Scoreboard(plugin).createScoreboard(player);
+                                                plugin.output(gen);
                                             } else {
                                                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
                                                 player.sendMessage(ConfigVariables.NOT_ENOUGH_TOKENS_MESSAGE);
@@ -350,6 +357,7 @@ public class UpgradesMenu extends InventoryHandler {
                                                     .replace("{level}", String.valueOf(this.gen.getUpgrades().getMoneyFly())));
                                             inventory.setItem(14, createMoneyFlyItem(upgrade.getTokensNeeded()));
                                             new Scoreboard(plugin).createScoreboard(player);
+                                            plugin.output(gen);
                                         }
                                     } else {
                                         player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);

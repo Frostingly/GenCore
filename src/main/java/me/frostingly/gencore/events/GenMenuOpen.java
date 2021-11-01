@@ -2,6 +2,7 @@ package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.inventories.GenMenu;
+import me.frostingly.gencore.inventoryHandler.PlayerMenuUtility;
 import me.frostingly.gencore.playerData.EcoPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,6 +26,7 @@ public class GenMenuOpen implements Listener {
                 if (player.isSneaking() && e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                     for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
                         if (ecoPlayer.getOwnedGens().get(i).getLocation().equals(e.getClickedBlock().getLocation())) {
+                            if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
                             new GenMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin, ecoPlayer.getOwnedGens().get(i)).open();
                         }
                     }
