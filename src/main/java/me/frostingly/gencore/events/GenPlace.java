@@ -2,6 +2,7 @@ package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.genData.Gen;
+import me.frostingly.gencore.genData.Upgrades;
 import me.frostingly.gencore.playerData.EcoPlayer;
 import me.frostingly.gencore.Utilities;
 import me.frostingly.gencore.serverCore.ConfigVariables;
@@ -33,7 +34,22 @@ public class GenPlace implements Listener {
             if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
                 for (Gen gen : plugin.getGens().values()) {
                     if (Utilities.format(e.getItemInHand().getItemMeta().getDisplayName()).equalsIgnoreCase(Utilities.format(gen.getType().getName()))) {
-                        Gen playersGen = new Gen(gen.getType(), gen.getUpgrades());
+                        int speed = 1;
+                        double quality = 1;
+                        int quantity = 1;
+                        int moneyFly = 1;
+
+                        if (gen.getType().getDefaultUpgrades().getSpeed() != 1) speed = gen.getType().getDefaultUpgrades().getSpeed();
+                        if (new Double(gen.getType().getDefaultUpgrades().getQuality()) != 1) quality = new Double(gen.getType().getDefaultUpgrades().getQuality());
+                        if (gen.getType().getDefaultUpgrades().getQuantity() != 1) quantity = gen.getType().getDefaultUpgrades().getQuantity();
+                        if (gen.getType().getDefaultUpgrades().getMoneyFly() != 1) moneyFly = gen.getType().getDefaultUpgrades().getMoneyFly();
+
+                        if (gen.getUpgrades().getSpeed() != speed) speed = gen.getUpgrades().getSpeed();
+                        if (new Double(gen.getUpgrades().getQuality()) != quality) quality = new Double(gen.getUpgrades().getQuality());
+                        if (gen.getUpgrades().getQuantity() != quantity) quantity = gen.getUpgrades().getQuantity();
+                        if (gen.getUpgrades().getMoneyFly() != moneyFly) moneyFly = gen.getUpgrades().getMoneyFly();
+
+                        Gen playersGen = new Gen(gen.getType(), new Upgrades(speed, quality, quantity, moneyFly));
                         ItemStack itemStack = new ItemStack(e.getItemInHand().getType());
                         ItemMeta itemMeta = itemStack.getItemMeta();
 

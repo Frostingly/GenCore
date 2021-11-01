@@ -161,6 +161,7 @@ public final class GenCore extends JavaPlugin {
                                     || gen.getUpgrades().getQuantity() != indexedQuantity
                                     || gen.getUpgrades().getMoneyFly() != indexedMoneyFly) {
                                 this.cancel();
+                                output(gen);
                             } else {
                                 if (Bukkit.getWorld(gen.getLocation().getWorld().getName()).getBlockAt(gen.getLocation()).getType() != Material.AIR) {
                                     ItemStack outputItem = null;

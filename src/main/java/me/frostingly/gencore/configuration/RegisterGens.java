@@ -52,8 +52,8 @@ public class RegisterGens {
                         int moneyFly = 1;
 
                         if (type.getDefaultUpgrades().getSpeed() != 1) speed = type.getDefaultUpgrades().getSpeed();
-                        if (type.getDefaultUpgrades().getQuantity() != 1) quantity = type.getDefaultUpgrades().getQuantity();
                         if (new Double(type.getDefaultUpgrades().getQuality()) != 1) quality = new Double(type.getDefaultUpgrades().getQuality());
+                        if (type.getDefaultUpgrades().getQuantity() != 1) quantity = type.getDefaultUpgrades().getQuantity();
                         if (type.getDefaultUpgrades().getMoneyFly() != 1) moneyFly = type.getDefaultUpgrades().getMoneyFly();
 
                         ConfigurationSection upgradesSection = config.getConfigurationSection("gen.upgrades");
