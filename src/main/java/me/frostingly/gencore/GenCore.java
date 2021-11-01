@@ -144,63 +144,57 @@ public final class GenCore extends JavaPlugin {
     }
 
     public void output(Gen gen) {
+        final int indexedSpeed = gen.getUpgrades().getSpeed();
+        final String indexedQuality = gen.getUpgrades().getQuality();
+        final int indexedQuantity = gen.getUpgrades().getQuantity();
+        final int indexedMoneyFly = gen.getUpgrades().getMoneyFly();
         new BukkitRunnable() {
-            private final int indexedSpeed = gen.getUpgrades().getSpeed();
-            private final String indexedQuality = gen.getUpgrades().getQuality();
-            private final int indexedQuantity = gen.getUpgrades().getQuantity();
-            private final int indexedMoneyFly = gen.getUpgrades().getMoneyFly();
-
             @Override
             public void run() {
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        if (gen.isActive()) {
-                            if (gen.getUpgrades().getSpeed() != indexedSpeed
-                                    || !new Double(gen.getUpgrades().getQuality()).equals(new Double(indexedQuality))
-                                    || gen.getUpgrades().getQuantity() != indexedQuantity
-                                    || gen.getUpgrades().getMoneyFly() != indexedMoneyFly) {
-                                this.cancel();
-                                output(gen);
-                            } else {
-                                if (Bukkit.getWorld(gen.getLocation().getWorld().getName()).getBlockAt(gen.getLocation()).getType() != Material.AIR) {
-                                    ItemStack outputItem = null;
-                                    if (gen.getType().getOutputItem().contains("function")) {
-                                        for (String functionName : getFunctions().keySet()) {
-                                            String rawFunctionName = StringUtils.substringBetween(gen.getType().getOutputItem(), "(", ")");
-                                            if (functionName.equalsIgnoreCase(rawFunctionName)) {
-                                                Configuration config = getFunctions().get(functionName);
-                                                if (config.getString("function.return").equalsIgnoreCase("ItemStack")) {
-                                                    outputItem = new ItemStack(Material.valueOf(config.getString("function.itemstack.material")));
-                                                    ItemMeta itemMeta = outputItem.getItemMeta();
-                                                    itemMeta.setDisplayName(Utilities.format(config.getString("function.itemstack.display_name")));
-                                                    outputItem.setItemMeta(itemMeta);
-                                                }
-                                            }
+                if (gen.isActive()) {
+                    if (gen.getUpgrades().getSpeed() != indexedSpeed
+                            || !new Double(gen.getUpgrades().getQuality()).equals(new Double(indexedQuality))
+                            || gen.getUpgrades().getQuantity() != indexedQuantity
+                            || gen.getUpgrades().getMoneyFly() != indexedMoneyFly) {
+                        this.cancel();
+                        output(gen);
+                    } else {
+                        if (Bukkit.getWorld(gen.getLocation().getWorld().getName()).getBlockAt(gen.getLocation()).getType() != Material.AIR) {
+                            ItemStack outputItem = null;
+                            if (gen.getType().getOutputItem().contains("function")) {
+                                for (String functionName : getFunctions().keySet()) {
+                                    String rawFunctionName = StringUtils.substringBetween(gen.getType().getOutputItem(), "(", ")");
+                                    if (functionName.equalsIgnoreCase(rawFunctionName)) {
+                                        Configuration config = getFunctions().get(functionName);
+                                        if (config.getString("function.return").equalsIgnoreCase("ItemStack")) {
+                                            outputItem = new ItemStack(Material.valueOf(config.getString("function.itemstack.material")));
+                                            ItemMeta itemMeta = outputItem.getItemMeta();
+                                            itemMeta.setDisplayName(Utilities.format(config.getString("function.itemstack.display_name")));
+                                            outputItem.setItemMeta(itemMeta);
                                         }
                                     }
-
-                                    ItemMeta itemMeta = outputItem.getItemMeta();
-
-                                    List<String> lore = new ArrayList<>();
-                                    lore.add(" ");
-                                    lore.add("&aSell price: " + indexedQuality + "&a$");
-                                    itemMeta.setLore(Utilities.formatList(lore));
-                                    outputItem.setAmount(indexedQuantity);
-                                    outputItem.setItemMeta(itemMeta);
-
-                                    Location newLocation = new Location(gen.getLocation().getWorld(), gen.getLocation().getX() + 0.5, gen.getLocation().getY() + 1, gen.getLocation().getZ() + 0.5);
-
-                                    Bukkit.getWorld(gen.getLocation().getWorld().getName()).dropItem(newLocation, outputItem);
-                                } else {
-                                    this.cancel();
                                 }
                             }
+
+                            ItemMeta itemMeta = outputItem.getItemMeta();
+
+                            List<String> lore = new ArrayList<>();
+                            lore.add(" ");
+                            lore.add("&aSell price: " + indexedQuality + "&a$");
+                            itemMeta.setLore(Utilities.formatList(lore));
+                            outputItem.setAmount(indexedQuantity);
+                            outputItem.setItemMeta(itemMeta);
+
+                            Location newLocation = new Location(gen.getLocation().getWorld(), gen.getLocation().getX() + 0.5, gen.getLocation().getY() + 1, gen.getLocation().getZ() + 0.5);
+
+                            Bukkit.getWorld(gen.getLocation().getWorld().getName()).dropItem(newLocation, outputItem);
+                        } else {
+                            this.cancel();
                         }
                     }
-                }.runTaskTimer(getInstance(), 0L, 100L / indexedSpeed);
+                }
             }
-        }.runTaskLater(this, 20L);
+        }.runTaskTimer(getInstance(), 20L, 100L / indexedSpeed);
     }
 
     public ItemStack createPane() {
