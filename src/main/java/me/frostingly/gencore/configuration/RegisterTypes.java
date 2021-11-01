@@ -63,6 +63,7 @@ public class RegisterTypes {
             if (!configFile.exists()) {
                 this.plugin.saveResource("types/starter_gen_type.yml", false);
             }
+            regTypes();
         }
     }
  }

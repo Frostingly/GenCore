@@ -100,6 +100,7 @@ public class RegisterGens {
             if (!configFile.exists()) {
                 this.plugin.saveResource("gens/starter_gen.yml", false);
             }
+            regGens();
         }
     }
 }

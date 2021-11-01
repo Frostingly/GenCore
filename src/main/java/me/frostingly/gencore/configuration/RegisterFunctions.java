@@ -30,6 +30,7 @@ public class RegisterFunctions {
             if (!configFile.exists()) {
                 this.plugin.saveResource("functions/createBasicCoal.yml", false);
             }
+            regFunctions();
         }
     }
 }
