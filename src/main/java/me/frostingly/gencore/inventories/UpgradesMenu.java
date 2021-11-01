@@ -63,13 +63,13 @@ public class UpgradesMenu extends InventoryHandler {
                                                 newLore.add(indexedLore.get(1));
                                                 newLore.add(" ");
                                                 newLore.add("&b&lUPGRADES");
-                                                if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                                if (this.gen.getUpgrades().getSpeed() != 1)
                                                     newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                     newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                                if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                                if (this.gen.getUpgrades().getQuantity() != 1)
                                                     newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                                if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                                if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                     newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                                 newLore.add(indexedLore.get(0));
                                                 newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -95,13 +95,13 @@ public class UpgradesMenu extends InventoryHandler {
                                             newLore.add(indexedLore.get(1));
                                             newLore.add(" ");
                                             newLore.add("&b&lUPGRADES");
-                                            if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                            if (this.gen.getUpgrades().getSpeed() != 1)
                                                 newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                 newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                            if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                            if (this.gen.getUpgrades().getQuantity() != 1)
                                                 newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                            if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                            if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                 newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                             newLore.add(indexedLore.get(0));
                                             newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -142,13 +142,13 @@ public class UpgradesMenu extends InventoryHandler {
                                                 newLore.add(indexedLore.get(1));
                                                 newLore.add(" ");
                                                 newLore.add("&b&lUPGRADES");
-                                                if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                                if (this.gen.getUpgrades().getSpeed() != 1)
                                                     newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                     newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                                if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                                if (this.gen.getUpgrades().getQuantity() != 1)
                                                     newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                                if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                                if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                     newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                                 newLore.add(indexedLore.get(0));
                                                 newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -174,13 +174,13 @@ public class UpgradesMenu extends InventoryHandler {
                                             newLore.add(indexedLore.get(1));
                                             newLore.add(" ");
                                             newLore.add("&b&lUPGRADES");
-                                            if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                            if (this.gen.getUpgrades().getSpeed() != 1)
                                                 newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                 newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                            if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                            if (this.gen.getUpgrades().getQuantity() != 1)
                                                 newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                            if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                            if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                 newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                             newLore.add(indexedLore.get(0));
                                             newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -221,13 +221,13 @@ public class UpgradesMenu extends InventoryHandler {
                                                 newLore.add(indexedLore.get(1));
                                                 newLore.add(" ");
                                                 newLore.add("&b&lUPGRADES");
-                                                if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                                if (this.gen.getUpgrades().getSpeed() != 1)
                                                     newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                     newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                                if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                                if (this.gen.getUpgrades().getQuantity() != 1)
                                                     newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                                if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                                if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                     newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                                 newLore.add(indexedLore.get(0));
                                                 newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -253,13 +253,13 @@ public class UpgradesMenu extends InventoryHandler {
                                             newLore.add(indexedLore.get(1));
                                             newLore.add(" ");
                                             newLore.add("&b&lUPGRADES");
-                                            if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                            if (this.gen.getUpgrades().getSpeed() != 1)
                                                 newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                 newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                            if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                            if (this.gen.getUpgrades().getQuantity() != 1)
                                                 newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                            if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                            if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                 newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                             newLore.add(indexedLore.get(0));
                                             newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -300,13 +300,13 @@ public class UpgradesMenu extends InventoryHandler {
                                                 newLore.add(indexedLore.get(1));
                                                 newLore.add(" ");
                                                 newLore.add("&b&lUPGRADES");
-                                                if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                                if (this.gen.getUpgrades().getSpeed() != 1)
                                                     newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                                if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                     newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                                if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                                if (this.gen.getUpgrades().getQuantity() != 1)
                                                     newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                                if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                                if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                     newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                                 newLore.add(indexedLore.get(0));
                                                 newLore.add(indexedLore.get(indexedLore.size() - 1));
@@ -332,13 +332,13 @@ public class UpgradesMenu extends InventoryHandler {
                                             newLore.add(indexedLore.get(1));
                                             newLore.add(" ");
                                             newLore.add("&b&lUPGRADES");
-                                            if (this.gen.getUpgrades().getSpeed() != this.gen.getType().getDefaultUpgrades().getSpeed())
+                                            if (this.gen.getUpgrades().getSpeed() != 1)
                                                 newLore.add("  &f * &fSpeed " + this.gen.getUpgrades().getSpeed());
-                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != Double.parseDouble(this.gen.getType().getDefaultUpgrades().getQuality()))
+                                            if (Double.parseDouble(this.gen.getUpgrades().getQuality()) != 1)
                                                 newLore.add("  &f * &fQuality " + this.gen.getUpgrades().getQuality());
-                                            if (this.gen.getUpgrades().getQuantity() != this.gen.getType().getDefaultUpgrades().getQuantity())
+                                            if (this.gen.getUpgrades().getQuantity() != 1)
                                                 newLore.add("  &f * &fQuantity " + this.gen.getUpgrades().getQuantity());
-                                            if (this.gen.getUpgrades().getMoneyFly() != this.gen.getType().getDefaultUpgrades().getMoneyFly())
+                                            if (this.gen.getUpgrades().getMoneyFly() != 1)
                                                 newLore.add("  &f * &fMoney fly " + this.gen.getUpgrades().getMoneyFly());
                                             newLore.add(indexedLore.get(0));
                                             newLore.add(indexedLore.get(indexedLore.size() - 1));

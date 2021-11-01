@@ -284,8 +284,6 @@ public final class GenCore extends JavaPlugin {
                     String quality = genSection.getString(genID + ".upgrades.quality");
                     int quantity = genSection.getInt(genID + ".upgrades.quantity");
                     int moneyFly = genSection.getInt(genID + ".upgrades.money_fly");
-                    System.out.println(quality);
-                    System.out.println(getTypes().get(genSection.getString(genID + ".type")));
                     Gen gen = new Gen(getTypes().get(genSection.getString(genID + ".type")), new Upgrades(speed, new Double(quality), quantity, moneyFly));
                     gen.setUpgrades(new Upgrades(speed, new Double(quality), quantity, moneyFly));
                     Location location = (Location) genSection.get(genID + ".location");
@@ -328,9 +326,6 @@ public final class GenCore extends JavaPlugin {
         ConfigurationSection dataSection = this.banData.getConfig().getConfigurationSection("bans");
         dataSection.getKeys(false).forEach(uuid -> {
             UUID uuidConverted = UUID.fromString(uuid);
-            System.out.println("raw: " + uuid);
-            System.out.println("converted: " + uuidConverted);
-            System.out.println("reason: " + dataSection.getString(uuid + ".reason"));
             bannedUUIDs.put(uuidConverted, dataSection.getString(uuid + ".reason"));
         });
     }

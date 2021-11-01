@@ -1,6 +1,7 @@
 package me.frostingly.gencore.configuration;
 
 import me.frostingly.gencore.GenCore;
+import me.frostingly.gencore.Utilities;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -31,6 +32,7 @@ public class RegisterFunctions {
                 this.plugin.saveResource("functions/createBasicCoal.yml", false);
             }
             regFunctions();
+            System.out.println(Utilities.format("&cCouldn't find any function files, preloaded default files."));
         }
     }
 }

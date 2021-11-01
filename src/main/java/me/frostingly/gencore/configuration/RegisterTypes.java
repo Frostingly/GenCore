@@ -1,6 +1,7 @@
 package me.frostingly.gencore.configuration;
 
 import me.frostingly.gencore.GenCore;
+import me.frostingly.gencore.Utilities;
 import me.frostingly.gencore.gendata.Type;
 import me.frostingly.gencore.gendata.UpgradeType;
 import me.frostingly.gencore.gendata.Upgrades;
@@ -64,6 +65,7 @@ public class RegisterTypes {
                 this.plugin.saveResource("types/starter_gen_type.yml", false);
             }
             regTypes();
+            System.out.println(Utilities.format("&cCouldn't find any gen type files, preloaded default files."));
         }
     }
  }

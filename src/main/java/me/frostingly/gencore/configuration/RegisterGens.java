@@ -100,6 +100,7 @@ public class RegisterGens {
                 this.plugin.saveResource("gens/starter_gen.yml", false);
             }
             regGens();
+            System.out.println(Utilities.format("&cCouldn't find any gen files, preloaded default files."));
         }
     }
 }
