@@ -52,4 +52,4 @@ This core contains customizable generators, support for luckperms ranks, a chat 
 <br />
 `gencore.command.gamemode.spectator` >> Access to the **/gmsp** command.
 
-###If you find any issues with the plugin or have any features in mind, contact me on Discord: *Frostingly™#6666*!
+If you find any issues with the plugin or have any features in mind, contact me on Discord: *Frostingly™#6666*!
