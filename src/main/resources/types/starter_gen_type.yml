@@ -1,0 +1,19 @@
+type:
+  display_name: "&0Coal Gen"
+  type: "COAL"
+  display_block: COAL_BLOCK
+  output_item: "function(createBasicCoal)"
+
+  default_lore:
+    - " "
+    - "&d&oGenerates coal."
+    - " "
+    - "&7&lCOMMON"
+
+  defaultUpgrades:
+    QUALITY: 2.5
+
+  purchasableUpgrades:
+    - "SPEED"
+    - "QUALITY"
+    - "QUANTITY"

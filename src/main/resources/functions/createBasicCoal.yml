@@ -1,0 +1,5 @@
+function:
+  itemstack:
+    material: COAL
+    display_name: "&fBasic Coal"
+  return: "ItemStack"
