@@ -1,0 +1,28 @@
+scoreboard:
+  title: "&b&lAAAGens"
+
+  scores:
+    11:
+      text: " "
+    10:
+      text: "  &b&lPLAYER"
+    9:
+      text: "    &f* Username: {player_name}"
+    8:
+      text: "    &f* Balance: &a{balance}$"
+    7:
+      text: "    &f* Tokens: &5{tokens}"
+    6:
+      text: "    &f* Total Gens: &f{total_gens}&7/&f{max_gens}"
+    5:
+      text: "&a "
+    4:
+      text: "  &b&lSERVER"
+    3:
+      text: "    &f* Online players: {online_players}"
+    2:
+      text: "    &f* TPS: {tps}"
+    1:
+      text: "&5 "
+    0:
+      text: "&7&oAAAGens.minehut.gg"

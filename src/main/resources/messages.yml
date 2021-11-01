@@ -1,0 +1,23 @@
+messages:
+  SELL_MESSAGE: "&aSold {items}x items for {money}$!"
+  COULD_NOT_SELL: "&cCouldn't sell anything"
+  GAMEMODE_CHANGE_MESSAGE: "&aChanged your gamemode to {gamemode}"
+  NO_PERMISSION_CMD: "&cYou don't have permissions to execute this command"
+  ONLY_PLAYERS_CAN_EXEC_CMD: "&cOnly players can execute this command"
+  JOIN_MESSAGE: "&a{player_name} has joined the server!"
+  QUIT_MESSAGE: "&c{player_name} has left the server"
+  GEN_PLACED_MESSAGE: "&aPlaced a {gen}&a!"
+  GEN_UPGRADE_MESSAGE: "&aUpgraded {gen}&a's {upgrade} level to {level}"
+
+  GEN_UPGRADE_MAXED_OUT_MESSAGE: "&cThis gen doesn't support further {upgrade} upgrades"
+  NOT_ENOUGH_TOKENS_MESSAGE: "&cYou don't have enough tokens to buy this upgrade"
+  NOT_ENOUGH_DOLLARS_MESSAGE: "&cYou don't have enough dollars to buy tokens"
+  GEN_CAP_REACHED_MESSAGE: "&6&lGEN CAP REACHED! &cTo increase the cap, buy a rank at /buy"
+
+  PURCHASED_TOKENS_MESSAGE: "&aYou have purchased {tokens} tokens for {money}$!"
+
+  ECO_PLAYER_NO_EXIST: "&cYou have already started!"
+
+  INCORRECT_CMD_USAGE:
+    gamemode_cmd:
+      message: "&c/gamemode <creative|survival|adventure|spectator>"

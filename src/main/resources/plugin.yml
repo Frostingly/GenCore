@@ -1,0 +1,20 @@
+name: GenCore
+version: '${project.version}'
+main: me.frostingly.gencore.GenCore
+api-version: 1.17
+authors: [ Frostingly ]
+description: Gen server core.
+
+commands:
+  gmc:
+  gms:
+  gma:
+  gmsp:
+  sell:
+  exchange:
+  gamemode:
+  gencore:
+    aliases: ['gc']
+  ban:
+  bancheck:
+  unban:
