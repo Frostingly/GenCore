@@ -11,8 +11,6 @@ public class Gen {
     private Upgrades upgrades;
     private boolean active = true;
 
-    private long lastOutputTime;
-
     private ArmorStand armorStand;
     private Location location;
 
@@ -47,18 +45,6 @@ public class Gen {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public long getLastOutputTime() {
-        return lastOutputTime;
-    }
-
-    public void setLastOutputTime(long lastOutputTime) {
-        this.lastOutputTime = lastOutputTime;
     }
 
     public ArmorStand getArmorStand() {

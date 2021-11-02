@@ -38,7 +38,7 @@ public class PlayerJoin implements Listener {
             }
         }
         if (!foundEcoPlayer) {
-            EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20);
+            EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20, new PlayerMenuUtility(player));
             plugin.getEcoPlayers().add(ecoPlayer);
         }
         e.setJoinMessage(ConfigVariables.JOIN_MESSAGE
