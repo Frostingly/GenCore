@@ -18,12 +18,11 @@ public class EcoPlayer {
 
     private PlayerMenuUtility playerMenuUtility;
 
-    public EcoPlayer(String owner, double balance, int tokens, int maxTotalGens, PlayerMenuUtility playerMenuUtility) {
+    public EcoPlayer(String owner, double balance, int tokens, int maxTotalGens) {
         this.owner = owner;
         this.balance = balance;
         this.tokens = tokens;
         this.maxTotalGens = maxTotalGens;
-        this.playerMenuUtility = playerMenuUtility;
     }
 
     public String getOwner() {

@@ -106,8 +106,8 @@ public class GenPlace implements Listener {
                                 hologram.setInvisible(true);
                                 hologram.setInvulnerable(true);
                                 playersGen.setArmorStand(hologram);
+                                playersGen.setLastOutputTime(System.currentTimeMillis());
                                 ecoPlayer.getOwnedGens().add(playersGen);
-                                plugin.output(playersGen);
                                 player.sendMessage(ConfigVariables.GEN_PLACED_MESSAGE
                                         .replace("{gen}", Utilities.format(playersGen.getType().getName())));
                                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
@@ -129,8 +129,8 @@ public class GenPlace implements Listener {
                             hologram.setInvisible(true);
                             hologram.setInvulnerable(true);
                             playersGen.setArmorStand(hologram);
+                            playersGen.setLastOutputTime(System.currentTimeMillis());
                             ecoPlayer.getOwnedGens().add(playersGen);
-                            plugin.output(playersGen);
                             player.sendMessage(ConfigVariables.GEN_PLACED_MESSAGE
                                     .replace("{gen}", Utilities.format(playersGen.getType().getName())));
                             player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);

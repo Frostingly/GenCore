@@ -1,10 +1,10 @@
 package me.frostingly.gencore;
 
+import lombok.SneakyThrows;
 import me.frostingly.gencore.servercore.commands.PluginCMD;
 import me.frostingly.gencore.configuration.*;
 import me.frostingly.gencore.events.*;
 import me.frostingly.gencore.gendata.*;
-import me.frostingly.gencore.inventoryhandler.PlayerMenuUtility;
 import me.frostingly.gencore.playerdata.EcoPlayer;
 import me.frostingly.gencore.servercore.ConfigVariables;
 import me.frostingly.gencore.servercore.Scoreboard;
@@ -32,6 +32,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public final class GenCore extends JavaPlugin {
 
@@ -94,26 +97,24 @@ public final class GenCore extends JavaPlugin {
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (ecoPlayers.size() == 0) {
-                EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20, new PlayerMenuUtility(player));
+                EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20);
                 ecoPlayers.add(ecoPlayer);
             } else {
                 boolean foundEcoPlayer = false;
                 for (EcoPlayer ecoPlayer : ecoPlayers) {
                     if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
                         foundEcoPlayer = true;
-                        for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
-                            Gen gen = ecoPlayer.getOwnedGens().get(i);
-                            output(gen);
-                        }
                     }
                 }
                 if (!foundEcoPlayer) {
-                    EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20, new PlayerMenuUtility(player));
+                    EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20);
                     ecoPlayers.add(ecoPlayer);
                 }
             }
             new Scoreboard(this).createScoreboard(player);
         }
+
+        output();
     }
 
     private void regEvents(PluginManager pm) {
@@ -143,59 +144,74 @@ public final class GenCore extends JavaPlugin {
         getCommand("unban").setExecutor(new Unban(this));
     }
 
-    public void output(Gen gen) {
-        final int indexedSpeed = gen.getUpgrades().getSpeed();
-        final String indexedQuality = gen.getUpgrades().getQuality();
-        final int indexedQuantity = gen.getUpgrades().getQuantity();
-        final int indexedMoneyFly = gen.getUpgrades().getMoneyFly();
+    public void output() {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (gen.isActive()) {
-                    if (gen.getUpgrades().getSpeed() != indexedSpeed
-                            || !new Double(gen.getUpgrades().getQuality()).equals(new Double(indexedQuality))
-                            || gen.getUpgrades().getQuantity() != indexedQuantity
-                            || gen.getUpgrades().getMoneyFly() != indexedMoneyFly) {
-                        this.cancel();
-                        output(gen);
-                    } else {
-                        if (Bukkit.getWorld(gen.getLocation().getWorld().getName()).getBlockAt(gen.getLocation()).getType() != Material.AIR) {
-                            ItemStack outputItem = null;
-                            if (gen.getType().getOutputItem().contains("function")) {
-                                for (String functionName : getFunctions().keySet()) {
-                                    String rawFunctionName = StringUtils.substringBetween(gen.getType().getOutputItem(), "(", ")");
-                                    if (functionName.equalsIgnoreCase(rawFunctionName)) {
-                                        Configuration config = getFunctions().get(functionName);
-                                        if (config.getString("function.return").equalsIgnoreCase("ItemStack")) {
-                                            outputItem = new ItemStack(Material.valueOf(config.getString("function.itemstack.material")));
-                                            ItemMeta itemMeta = outputItem.getItemMeta();
-                                            itemMeta.setDisplayName(Utilities.format(config.getString("function.itemstack.display_name")));
-                                            outputItem.setItemMeta(itemMeta);
+                for (EcoPlayer ecoPlayer : getEcoPlayers()) {
+                    for (int i = 0; i < ecoPlayer.getOwnedGens().size(); i++) {
+                        if (ecoPlayer.getOwnedGens().get(i).isActive()) {
+                            long lastOutputTime = ecoPlayer.getOwnedGens().get(i).getLastOutputTime();
+
+                            if ((System.currentTimeMillis() - lastOutputTime) >= (5000 / ecoPlayer.getOwnedGens().get(i).getUpgrades().getSpeed())) {
+                                if (Bukkit.getWorld(ecoPlayer.getOwnedGens().get(i).getLocation().getWorld().getName()).getBlockAt(ecoPlayer.getOwnedGens().get(i).getLocation()).getType() != Material.AIR) {
+                                    ItemStack outputItem = null;
+                                    if (ecoPlayer.getOwnedGens().get(i).getType().getOutputItem().contains("function")) {
+                                        for (String functionName : getFunctions().keySet()) {
+                                            String rawFunctionName = StringUtils.substringBetween(ecoPlayer.getOwnedGens().get(i).getType().getOutputItem(), "(", ")");
+                                            if (functionName.equalsIgnoreCase(rawFunctionName)) {
+                                                Configuration config = getFunctions().get(functionName);
+                                                if (config.getString("function.return").equalsIgnoreCase("ItemStack")) {
+                                                    outputItem = new ItemStack(Material.valueOf(config.getString("function.itemstack.material")));
+                                                    ItemMeta itemMeta = outputItem.getItemMeta();
+                                                    itemMeta.setDisplayName(Utilities.format(config.getString("function.itemstack.display_name")));
+                                                    outputItem.setItemMeta(itemMeta);
+                                                }
+                                            }
                                         }
                                     }
+
+                                    ItemMeta itemMeta = outputItem.getItemMeta();
+
+                                    List<String> lore = new ArrayList<>();
+                                    lore.add(" ");
+                                    lore.add("&aSell price: " + ecoPlayer.getOwnedGens().get(i).getUpgrades().getQuality() + "&a$");
+                                    itemMeta.setLore(Utilities.formatList(lore));
+                                    outputItem.setAmount(ecoPlayer.getOwnedGens().get(i).getUpgrades().getQuantity());
+                                    outputItem.setItemMeta(itemMeta);
+
+                                    Location newLocation = new Location(ecoPlayer.getOwnedGens().get(i).getLocation().getWorld(), ecoPlayer.getOwnedGens().get(i).getLocation().getX() + 0.5, ecoPlayer.getOwnedGens().get(i).getLocation().getY() + 1, ecoPlayer.getOwnedGens().get(i).getLocation().getZ() + 0.5);
+
+                                    Bukkit.getScheduler().runTask(getInstance(), new DropItem(ecoPlayer.getOwnedGens().get(i), newLocation, outputItem));
+                                    ecoPlayer.getOwnedGens().get(i).setLastOutputTime(System.currentTimeMillis());
                                 }
                             }
-
-                            ItemMeta itemMeta = outputItem.getItemMeta();
-
-                            List<String> lore = new ArrayList<>();
-                            lore.add(" ");
-                            lore.add("&aSell price: " + indexedQuality + "&a$");
-                            itemMeta.setLore(Utilities.formatList(lore));
-                            outputItem.setAmount(indexedQuantity);
-                            outputItem.setItemMeta(itemMeta);
-
-                            Location newLocation = new Location(gen.getLocation().getWorld(), gen.getLocation().getX() + 0.5, gen.getLocation().getY() + 1, gen.getLocation().getZ() + 0.5);
-
-                            Bukkit.getWorld(gen.getLocation().getWorld().getName()).dropItem(newLocation, outputItem);
-                        } else {
-                            this.cancel();
                         }
                     }
                 }
             }
-        }.runTaskTimer(getInstance(), 20L, 100L / indexedSpeed);
+        }.runTaskTimerAsynchronously(getInstance(), 0L, 20L);
     }
+
+    static class DropItem implements Runnable {
+
+        Gen gen;
+        Location location;
+        ItemStack outputItem;
+
+        public DropItem(Gen gen, Location location, ItemStack outputItem) {
+            this.gen = gen;
+            this.location = location;
+            this.outputItem = outputItem;
+        }
+
+        @Override
+        public void run() {
+            Bukkit.getWorld(gen.getLocation().getWorld().getName()).dropItem(location, outputItem);
+        }
+    }
+
+
 
     public ItemStack createPane() {
         ItemStack itemStack = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
@@ -267,8 +283,7 @@ public final class GenCore extends JavaPlugin {
                     uuid,
                     new Double(dataSection.getString(uuid + ".balance")),
                     dataSection.getInt(uuid + ".tokens"),
-                    dataSection.getInt(uuid + ".maxTotalGens"),
-                    new PlayerMenuUtility(Bukkit.getPlayer(UUID.fromString(uuid))));
+                    dataSection.getInt(uuid + ".maxTotalGens"));
 
             List<Gen> playerGens = new ArrayList<>();
             if (dataSection.contains(uuid + ".ownedGens")) {
