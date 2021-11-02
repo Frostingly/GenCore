@@ -163,33 +163,25 @@ public class PluginCMD implements CommandExecutor {
                                                 } else {
                                                     String playerName = args[2];
                                                     String amount = args[3];
-                                                    if (playerName != null) {
-                                                        if (amount != null) {
-                                                            Player player = Bukkit.getPlayer(playerName);
-                                                            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
-                                                            for (EcoPlayer ecoPlayer : plugin.getEcoPlayers()) {
-                                                                if (player != null) {
-                                                                    if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
-                                                                        ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) + new Double(amount));
-                                                                        sender.sendMessage(Utilities.format("&aSuccessfully given " + Utilities.formatNumber(new Double(amount).longValue()) + "$ to " + playerName));
-                                                                        new Scoreboard(plugin).createScoreboard(player);
-                                                                    }
-                                                                } else {
-                                                                    if (offlinePlayer.hasPlayedBefore()) {
-                                                                        if (ecoPlayer.getOwner().equalsIgnoreCase(offlinePlayer.getUniqueId().toString())) {
-                                                                            ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) + new Double(amount));
-                                                                            sender.sendMessage(Utilities.format("&aSuccessfully given " + Utilities.formatNumber(new Double(amount).longValue()) + "$ to " + playerName));
-                                                                        }
-                                                                    } else {
-                                                                        sender.sendMessage(Utilities.format("&cCould not find a player by the name " + args[2]));
-                                                                    }
-                                                                }
+                                                    Player player = Bukkit.getPlayer(playerName);
+                                                    OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
+                                                    for (EcoPlayer ecoPlayer : plugin.getEcoPlayers()) {
+                                                        if (player != null) {
+                                                            if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
+                                                                ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) + new Double(amount));
+                                                                sender.sendMessage(Utilities.format("&aSuccessfully given " + Utilities.formatNumber(new Double(amount).longValue()) + "$ to " + playerName));
+                                                                new Scoreboard(plugin).createScoreboard(player);
                                                             }
                                                         } else {
-                                                            sender.sendMessage(Utilities.format("&cUsage: /gc balance give <player> <amount>"));
+                                                            if (offlinePlayer.hasPlayedBefore()) {
+                                                                if (ecoPlayer.getOwner().equalsIgnoreCase(offlinePlayer.getUniqueId().toString())) {
+                                                                    ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) + new Double(amount));
+                                                                    sender.sendMessage(Utilities.format("&aSuccessfully given " + Utilities.formatNumber(new Double(amount).longValue()) + "$ to " + playerName));
+                                                                }
+                                                            } else {
+                                                                sender.sendMessage(Utilities.format("&cCould not find a player by the name " + args[2]));
+                                                            }
                                                         }
-                                                    } else {
-                                                        sender.sendMessage(Utilities.format("&cUsage: /gc balance give <player> <amount>"));
                                                     }
                                                 }
                                             }

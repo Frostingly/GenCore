@@ -34,7 +34,7 @@ public class PlayerQuit implements Listener {
             }
         }
         if (!foundEcoPlayer) {
-            EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20, new PlayerMenuUtility(player));
+            EcoPlayer ecoPlayer = new EcoPlayer(player.getUniqueId().toString(), 0, 0, 20);
             plugin.getEcoPlayers().add(ecoPlayer);
         }
         e.setQuitMessage(ConfigVariables.QUIT_MESSAGE
