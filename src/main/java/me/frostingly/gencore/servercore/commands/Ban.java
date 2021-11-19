@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class Ban implements CommandExecutor {
 
@@ -20,7 +21,7 @@ public class Ban implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
         if (cmd.getName().equalsIgnoreCase("ban")) {
             if (sender.hasPermission("gencore.command.ban")) {
                 Component unsuccessfulBan = Component.text("Could not ban that player either because they don't exist or are already banned").color(TextColor.fromHexString("#fc5454"));

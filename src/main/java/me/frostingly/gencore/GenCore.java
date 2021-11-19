@@ -1,6 +1,6 @@
 package me.frostingly.gencore;
 
-import me.frostingly.gencore.servercore.commands.PluginCMD;
+import me.frostingly.gencore.servercore.commands.*;
 import me.frostingly.gencore.configuration.*;
 import me.frostingly.gencore.events.*;
 import me.frostingly.gencore.gendata.*;
@@ -10,10 +10,7 @@ import me.frostingly.gencore.servercore.ConfigVariables;
 import me.frostingly.gencore.servercore.Scoreboard;
 import me.frostingly.gencore.servercore.economy.commands.Exchange;
 import me.frostingly.gencore.servercore.economy.commands.Sell;
-import me.frostingly.gencore.servercore.commands.Ban;
-import me.frostingly.gencore.servercore.commands.BanCheck;
-import me.frostingly.gencore.servercore.commands.Gamemode;
-import me.frostingly.gencore.servercore.commands.Unban;
+import me.frostingly.gencore.servercore.economy.commands.Shop;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -40,6 +37,7 @@ public final class GenCore extends JavaPlugin {
     private final Map<String, Type> types = new HashMap();
     private final Map<String, Configuration> functions = new HashMap<>();
     private final Map<String, Gen> gens = new HashMap<>();
+    private final Map<String, PurchasableGen> purchasableGens = new HashMap<>();
     private final Map<UUID, String> bannedUUIDs = new HashMap<>();
 
     private final DataManager data = new DataManager(this);
@@ -85,6 +83,7 @@ public final class GenCore extends JavaPlugin {
         new RegisterFunctions(this).regFunctions();
         new RegisterTypes(this).regTypes();
         new RegisterGens(this).regGens();
+        new RegisterPurchasableGens(this).regPurchasableGens();
 
         regEvents(Bukkit.getPluginManager());
         regCMDs();
@@ -130,6 +129,7 @@ public final class GenCore extends JavaPlugin {
     private void regCMDs() {
         getCommand("exchange").setExecutor(new Exchange(this));
         getCommand("sell").setExecutor(new Sell(this));
+        getCommand("shop").setExecutor(new Shop(this));
 
         getCommand("gamemode").setExecutor(new Gamemode(this));
         getCommand("gms").setExecutor(new Gamemode(this));
@@ -140,6 +140,7 @@ public final class GenCore extends JavaPlugin {
 
         getCommand("ban").setExecutor(new Ban(this));
         getCommand("bancheck").setExecutor(new BanCheck(this));
+        getCommand("bypass").setExecutor(new Bypass(this));
         getCommand("unban").setExecutor(new Unban(this));
     }
 
@@ -157,7 +158,6 @@ public final class GenCore extends JavaPlugin {
                             if (ecoPlayer.getOwnedGens().get(i).isActive()) {
                                 long lastOutputTime = ecoPlayer.getOwnedGens().get(i).getLastOutputTime();
 
-                                System.out.println(fastestSpeed);
                                 if ((System.currentTimeMillis() - lastOutputTime) >= (5000 / ecoPlayer.getOwnedGens().get(i).getUpgrades().getSpeed())) {
                                     if (Bukkit.getWorld(ecoPlayer.getOwnedGens().get(i).getLocation().getWorld().getName()).getBlockAt(ecoPlayer.getOwnedGens().get(i).getLocation()).getType() != Material.AIR) {
                                         ItemStack outputItem = null;
@@ -269,6 +269,7 @@ public final class GenCore extends JavaPlugin {
                 this.data.getConfig().set("data.players." + ecoPlayer.getOwner() + ".tokens", ecoPlayer.getTokens());
                 this.data.getConfig().set("data.players." + ecoPlayer.getOwner() + ".maxTotalGens", ecoPlayer.getMaxTotalGens());
                 this.data.getConfig().set("data.players." + ecoPlayer.getOwner() + ".withdrew", ecoPlayer.hasWithdrew());
+                this.data.getConfig().set("data.players." + ecoPlayer.getOwner() + ".bypass", ecoPlayer.isBypass());
 
                 for (int genID = 0; genID < ecoPlayer.getOwnedGens().size(); genID++) {
                     ecoPlayer.getOwnedGens().get(genID).getArmorStand().remove();
@@ -296,6 +297,7 @@ public final class GenCore extends JavaPlugin {
                     new Double(dataSection.getString(uuid + ".balance")),
                     dataSection.getInt(uuid + ".tokens"),
                     dataSection.getInt(uuid + ".maxTotalGens"));
+            ecoPlayer.setBypass(dataSection.getBoolean(uuid + ".bypass"));
 
             List<Gen> playerGens = new ArrayList<>();
             if (dataSection.contains(uuid + ".ownedGens")) {
@@ -369,6 +371,10 @@ public final class GenCore extends JavaPlugin {
 
     public Map<String, Gen> getGens() {
         return gens;
+    }
+
+    public Map<String, PurchasableGen> getPurchasableGens() {
+        return purchasableGens;
     }
 
     public Map<UUID, String> getBannedUUIDs() {

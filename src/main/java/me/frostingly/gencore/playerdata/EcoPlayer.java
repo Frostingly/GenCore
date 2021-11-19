@@ -15,6 +15,7 @@ public class EcoPlayer {
     private List<Gen> ownedGens = new ArrayList<>();
     private int maxTotalGens;
     private boolean withdrew;
+    private boolean bypass;
 
     private PlayerMenuUtility playerMenuUtility;
 
@@ -64,6 +65,14 @@ public class EcoPlayer {
 
     public void setWithdrew(boolean withdrew) {
         this.withdrew = withdrew;
+    }
+
+    public boolean isBypass() {
+        return bypass;
+    }
+
+    public void setBypass(boolean bypass) {
+        this.bypass = bypass;
     }
 
     public PlayerMenuUtility getPlayerMenuUtility() {

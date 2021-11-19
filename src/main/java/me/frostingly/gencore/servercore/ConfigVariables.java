@@ -31,6 +31,7 @@ public class ConfigVariables {
     public static String GEN_CAP_REACHED_MESSAGE = "";
 
     public static String PURCHASED_TOKENS_MESSAGE = "";
+    public static String PURCHASED_STORE_ITEM_MESSAGE = "";
 
     public static String ECO_PLAYER_NO_EXIST = "";
 
@@ -55,6 +56,7 @@ public class ConfigVariables {
         GEN_CAP_REACHED_MESSAGE = Utilities.format(plugin.getMessageManager().getConfig().getString("messages.GEN_CAP_REACHED_MESSAGE"));
 
         PURCHASED_TOKENS_MESSAGE = Utilities.format(plugin.getMessageManager().getConfig().getString("messages.PURCHASED_TOKENS_MESSAGE"));
+        PURCHASED_STORE_ITEM_MESSAGE = Utilities.format(plugin.getMessageManager().getConfig().getString("messages.PURCHASED_STORE_ITEM_MESSAGE"));
 
         ECO_PLAYER_NO_EXIST = Utilities.format(plugin.getMessageManager().getConfig().getString("messages.ECO_PLAYER_NO_EXIST"));
 

@@ -53,7 +53,7 @@ public class UpgradesMenu extends InventoryHandler {
                             for (UpgradeType upgrade : this.gen.getType().getPurchasableUpgrades()) {
                                 if (upgrade.equals(UpgradeType.SPEED)) {
                                     if (this.gen.getUpgrades().getSpeed() < upgrade.getMaxLevel()) {
-                                        if (!player.isOp()) {
+                                        if (!ecoPlayer.isBypass()) {
                                             if (ecoPlayer.getTokens() >= upgrade.getTokensNeeded()) {
                                                 this.gen.getUpgrades().setSpeed(this.gen.getUpgrades().getSpeed() + 1);
                                                 List<String> indexedLore = this.gen.getItemStack().getLore();
@@ -134,7 +134,7 @@ public class UpgradesMenu extends InventoryHandler {
                             for (UpgradeType upgrade : this.gen.getType().getPurchasableUpgrades()) {
                                 if (upgrade.equals(UpgradeType.QUALITY)) {
                                     if (Double.parseDouble(this.gen.getUpgrades().getQuality()) < upgrade.getMaxLevel()) {
-                                        if (!player.isOp()) {
+                                        if (!ecoPlayer.isBypass()) {
                                             if (ecoPlayer.getTokens() >= upgrade.getTokensNeeded()) {
                                                 this.gen.getUpgrades().setQuality(Double.parseDouble(this.gen.getUpgrades().getQuality()) + .1);
                                                 List<String> indexedLore = this.gen.getItemStack().getLore();
@@ -215,7 +215,7 @@ public class UpgradesMenu extends InventoryHandler {
                             for (UpgradeType upgrade : this.gen.getType().getPurchasableUpgrades()) {
                                 if (upgrade.equals(UpgradeType.QUANTITY)) {
                                     if (this.gen.getUpgrades().getQuantity() < upgrade.getMaxLevel()) {
-                                        if (!player.isOp()) {
+                                        if (!ecoPlayer.isBypass()) {
                                             if (ecoPlayer.getTokens() >= upgrade.getTokensNeeded()) {
                                                 this.gen.getUpgrades().setQuantity(this.gen.getUpgrades().getQuantity() + 1);
                                                 List<String> indexedLore = this.gen.getItemStack().getLore();
@@ -296,7 +296,7 @@ public class UpgradesMenu extends InventoryHandler {
                             for (UpgradeType upgrade : this.gen.getType().getPurchasableUpgrades()) {
                                 if (upgrade.equals(UpgradeType.MONEY_FLY)) {
                                     if (this.gen.getUpgrades().getMoneyFly() < upgrade.getMaxLevel()) {
-                                        if (!player.isOp()) {
+                                        if (!ecoPlayer.isBypass()) {
                                             if (ecoPlayer.getTokens() >= upgrade.getTokensNeeded()) {
                                                 this.gen.getUpgrades().setMoneyFly(this.gen.getUpgrades().getMoneyFly() + 1);
                                                 List<String> indexedLore = this.gen.getItemStack().getLore();

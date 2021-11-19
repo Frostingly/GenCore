@@ -46,6 +46,7 @@ public class GenMenu extends InventoryHandler {
             if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
                 switch (e.getSlot()) {
                     case 12:
+                        if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
                         new UpgradesMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin, gen).open();
                         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                         break;

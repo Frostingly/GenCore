@@ -1,35 +1,33 @@
 package me.frostingly.gencore.servercore.economy.commands;
 
 import me.frostingly.gencore.GenCore;
-import me.frostingly.gencore.inventories.ExchangeMenu;
+import me.frostingly.gencore.inventories.ShopMenu;
 import me.frostingly.gencore.inventoryhandler.PlayerMenuUtility;
 import me.frostingly.gencore.playerdata.EcoPlayer;
 import me.frostingly.gencore.servercore.ConfigVariables;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class Exchange implements CommandExecutor {
+public class Shop implements CommandExecutor {
 
     private final GenCore plugin;
 
-    public Exchange(GenCore plugin) {
+    public Shop(GenCore plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
-        if (cmd.getName().equalsIgnoreCase("exchange")) {
+        if (cmd.getName().equalsIgnoreCase("shop")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 for (EcoPlayer ecoPlayer : plugin.getEcoPlayers()) {
                     if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
                         if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
-                        new ExchangeMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin).open();
-                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                        new ShopMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin).open();
                     }
                 }
             } else {

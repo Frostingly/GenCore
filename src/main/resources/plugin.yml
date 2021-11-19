@@ -18,3 +18,5 @@ commands:
   ban:
   bancheck:
   unban:
+  shop:
+  bypass:

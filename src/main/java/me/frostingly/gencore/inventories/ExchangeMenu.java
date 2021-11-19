@@ -46,11 +46,39 @@ public class ExchangeMenu extends InventoryHandler {
                     case 13:
                         switch (e.getClick()) {
                             case LEFT:
-                                if (new Double(ecoPlayer.getBalance()) >= 10) {
+                                if (!ecoPlayer.isBypass()) {
+                                    if (new Double(ecoPlayer.getBalance()) >= 25) {
+                                        if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
+                                        new ConfirmCancelMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin, new ConfirmCancelMenu.Confirm() {
+                                            @Override
+                                            public void handle(GenCore plugin, Player player1) {
+                                                ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) - 25);
+                                                ecoPlayer.setTokens(ecoPlayer.getTokens() + 1);
+                                                player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                                player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
+                                                        .replace("{tokens}", String.valueOf(1))
+                                                        .replace("{money}", String.valueOf(25)));
+                                                player.closeInventory();
+                                                new Scoreboard(plugin).createScoreboard(player);
+                                            }
+                                        }, new ConfirmCancelMenu.Deny() {
+                                            @Override
+                                            public void handle(GenCore plugin, Player player) {
+                                                if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
+                                                new ExchangeMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin).open();
+                                                player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                            }
+                                        }).open();
+                                    } else {
+                                        player.sendMessage(ConfigVariables.NOT_ENOUGH_DOLLARS_MESSAGE);
+                                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
+                                        player.closeInventory();
+                                    }
+                                } else {
+                                    if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
                                     new ConfirmCancelMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin, new ConfirmCancelMenu.Confirm() {
                                         @Override
                                         public void handle(GenCore plugin, Player player1) {
-                                            ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) - 25);
                                             ecoPlayer.setTokens(ecoPlayer.getTokens() + 1);
                                             player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                             player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
@@ -62,25 +90,80 @@ public class ExchangeMenu extends InventoryHandler {
                                     }, new ConfirmCancelMenu.Deny() {
                                         @Override
                                         public void handle(GenCore plugin, Player player) {
+                                            if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
                                             new ExchangeMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin).open();
                                             player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                         }
                                     }).open();
-                                } else {
-                                    player.sendMessage(ConfigVariables.NOT_ENOUGH_DOLLARS_MESSAGE);
-                                    player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
-                                    player.closeInventory();
                                 }
                                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                 break;
                             case RIGHT:
-                                if (new Double(ecoPlayer.getBalance()) >= 10) {
-                                    new ExchangeAmountMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin).open();
-                                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                if (!ecoPlayer.isBypass()) {
+                                    if (new Double(ecoPlayer.getBalance()) >= 25) {
+                                        if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
+                                        new AmountMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin,
+                                                createMainItem(1, 100),
+                                                1,
+                                                100,
+                                                "token",
+                                                "money",
+                                                null,
+                                                new AmountMenu.Confirmed() {
+                                                    @Override
+                                                    public void handle(GenCore plugin, Player player, int currentAmount, double currentCost, ItemStack good) {
+                                                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                                        if (currentAmount == 1) {
+                                                            player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
+                                                                    .replace("{tokens}", String.valueOf(currentAmount))
+                                                                    .replace("{money}", String.valueOf(currentCost)));
+                                                        } else {
+                                                            player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
+                                                                    .replace("{tokens}", String.valueOf(currentAmount))
+                                                                    .replace("{money}", String.valueOf(currentCost)));
+                                                        }
+                                                        ecoPlayer.setTokens(ecoPlayer.getTokens() + currentAmount);
+                                                        ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) - currentCost);
+
+                                                        player.closeInventory();
+                                                        new Scoreboard(plugin).createScoreboard(player);
+                                                    }
+                                                }).open();
+                                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                    } else {
+                                        player.sendMessage(ConfigVariables.NOT_ENOUGH_DOLLARS_MESSAGE);
+                                        player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
+                                        player.closeInventory();
+                                    }
                                 } else {
-                                    player.sendMessage(ConfigVariables.NOT_ENOUGH_DOLLARS_MESSAGE);
-                                    player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1f, 1f);
-                                    player.closeInventory();
+                                    if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
+                                    new AmountMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin,
+                                            createMainItem(1, 100),
+                                            1,
+                                            100,
+                                            "token",
+                                            "money",
+                                            null,
+                                            new AmountMenu.Confirmed() {
+                                                @Override
+                                                public void handle(GenCore plugin, Player player, int currentAmount, double currentCost, ItemStack good) {
+                                                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                                    if (currentAmount == 1) {
+                                                        player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
+                                                                .replace("{tokens}", String.valueOf(currentAmount))
+                                                                .replace("{money}", String.valueOf(currentCost)));
+                                                    } else {
+                                                        player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
+                                                                .replace("{tokens}", String.valueOf(currentAmount))
+                                                                .replace("{money}", String.valueOf(currentCost)));
+                                                    }
+                                                    ecoPlayer.setTokens(ecoPlayer.getTokens() + currentAmount);
+
+                                                    player.closeInventory();
+                                                    new Scoreboard(plugin).createScoreboard(player);
+                                                }
+                                            }).open();
+                                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                 }
                                 break;
                         }
@@ -102,6 +185,32 @@ public class ExchangeMenu extends InventoryHandler {
 
         inventory.setItem(13, createTokenItem());
         inventory.setItem(22, plugin.createCloseItem());
+    }
+
+    public ItemStack createMainItem(int amount, double cost) {
+        ItemStack itemStack = new ItemStack(Material.EMERALD);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        if (amount == 1) {
+            itemMeta.setDisplayName(Utilities.format("&5" + amount + "x " + Utilities.format("token")));
+        } else {
+            itemMeta.setDisplayName(Utilities.format("&5" + amount + "x " + Utilities.format("token " + "&5s")));
+        }
+        List<String> lore = new ArrayList<>();
+        lore.add(" ");
+        if (amount == 1) {
+            lore.add("&7&oBuy " + amount + "x " + Utilities.format("token") + " &7&ofor &a" + cost + "&a$!");
+        } else {
+            lore.add("&7&oBuy " + amount + "x " + Utilities.format("token" + "&7&os ") + "for &a" + cost + "&a$!");
+        }
+        lore.add(" ");
+        if (amount == 1) {
+            lore.add("&bLeft click -> Buy " + amount + "x " + "token");
+        } else {
+            lore.add("&bLeft click -> Buy " + amount + "x " + Utilities.format("token" + "&bs "));
+        }
+        itemMeta.setLore(Utilities.formatList(lore));
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
     }
 
     public ItemStack createTokenItem() {
