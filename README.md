@@ -25,6 +25,8 @@ This core contains customizable generators, support for luckperms ranks, a chat 
 `/sell all` >> Sells everything sellable in a player's inventory
 <br />
 `/exchange` >> Opens an inventory to exchange money for tokens.
+<br />
+`/shop` >> Opens the shop menu, there people can buy different resources defined by an admin.
 
 ## Permissions
 

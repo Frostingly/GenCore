@@ -8,32 +8,25 @@ import java.util.List;
 public class PurchasableGen {
 
     private final ItemStack itemStack;
-    private double cost;
+    private final List<String> displayLore;
+    private final double cost;
 
-    private final Upgrades defaultUpgrades;
-    private final List<UpgradeType> purchasableUpgrades;
-
-    public PurchasableGen(ItemStack itemStack, double cost, Upgrades defaultUpgrades, List<UpgradeType> purchasableUpgrades) {
+    public PurchasableGen(ItemStack itemStack, List<String> displayLore, double cost) {
         this.itemStack = itemStack;
+        this.displayLore = displayLore;
         this.cost = cost;
-        this.defaultUpgrades = defaultUpgrades;
-        this.purchasableUpgrades = purchasableUpgrades;
     }
 
     public ItemStack getItemStack() {
         return itemStack;
     }
 
+    public List<String> getDisplayLore() {
+        return displayLore;
+    }
+
     public double getCost() {
         return cost;
-    }
-
-    public Upgrades getDefaultUpgrades() {
-        return defaultUpgrades;
-    }
-
-    public List<UpgradeType> getPurchasableUpgrades() {
-        return purchasableUpgrades;
     }
 
 }

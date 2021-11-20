@@ -103,15 +103,13 @@ public class ExchangeMenu extends InventoryHandler {
                                     if (new Double(ecoPlayer.getBalance()) >= 25) {
                                         if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
                                         new AmountMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin,
-                                                createMainItem(1, 100),
+                                                createMainItem(1, 25),
                                                 1,
-                                                100,
+                                                25,
                                                 "token",
-                                                "money",
-                                                null,
-                                                new AmountMenu.Confirmed() {
+                                                "money", new AmountMenu.Confirmed() {
                                                     @Override
-                                                    public void handle(GenCore plugin, Player player, int currentAmount, double currentCost, ItemStack good) {
+                                                    public void handle(GenCore plugin, Player player, int currentAmount, double currentCost) {
                                                         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                                         if (currentAmount == 1) {
                                                             player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
@@ -138,15 +136,14 @@ public class ExchangeMenu extends InventoryHandler {
                                 } else {
                                     if (ecoPlayer.getPlayerMenuUtility() == null) ecoPlayer.setPlayerMenuUtility(new PlayerMenuUtility(player));
                                     new AmountMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin,
-                                            createMainItem(1, 100),
+                                            createMainItem(1, 25),
                                             1,
-                                            100,
+                                            25,
                                             "token",
                                             "money",
-                                            null,
                                             new AmountMenu.Confirmed() {
                                                 @Override
-                                                public void handle(GenCore plugin, Player player, int currentAmount, double currentCost, ItemStack good) {
+                                                public void handle(GenCore plugin, Player player, int currentAmount, double currentCost) {
                                                     player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                                     if (currentAmount == 1) {
                                                         player.sendMessage(ConfigVariables.PURCHASED_TOKENS_MESSAGE
@@ -203,11 +200,7 @@ public class ExchangeMenu extends InventoryHandler {
             lore.add("&7&oBuy " + amount + "x " + Utilities.format("token" + "&7&os ") + "for &a" + cost + "&a$!");
         }
         lore.add(" ");
-        if (amount == 1) {
-            lore.add("&bLeft click -> Buy " + amount + "x " + "token");
-        } else {
-            lore.add("&bLeft click -> Buy " + amount + "x " + Utilities.format("token" + "&bs "));
-        }
+        lore.add("&bLeft click -> Buy " + amount + "x");
         itemMeta.setLore(Utilities.formatList(lore));
         itemStack.setItemMeta(itemMeta);
         return itemStack;
@@ -225,8 +218,6 @@ public class ExchangeMenu extends InventoryHandler {
         lore.add(" ");
         lore.add("&bLeft click -> Buy 1");
         lore.add("&bRight click -> Buy more");
-        lore.add(" ");
-        lore.add("&6Exchange rate: 1 token = 25$");
 
         itemMeta.setLore(Utilities.formatList(lore));
         itemStack.setItemMeta(itemMeta);

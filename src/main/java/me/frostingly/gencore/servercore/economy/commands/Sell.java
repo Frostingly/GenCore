@@ -23,12 +23,17 @@ public class Sell implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (args.length > 0) {
-                    if (args[0].equalsIgnoreCase("all")) {
-                        if (player.hasPermission("sell.all")) {
-                            new SellMethods(plugin).sellAll(player.getInventory(), player);
-                        } else {
-                            player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
-                        }
+                    switch (args[0]) {
+                        case "all":
+                            if (player.hasPermission("sell.all")) {
+                                new SellMethods(plugin).sellAll(player.getInventory(), player);
+                            } else {
+                                player.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
+                            }
+                            break;
+                        default:
+                            player.sendMessage(ConfigVariables.INCORRECT_CMD_USAGE.getString(".sell_cmd.message"));
+                            break;
                     }
                 } else {
                     new SellMethods(plugin).sell(player);

@@ -29,58 +29,45 @@ public class SellMethods {
     }
 
     public void sell(Player player) {
-        ItemStack itemStackInHand = player.getInventory().getItemInMainHand();
-        if (itemStackInHand.getType() == Material.AIR) {
+        if (player.getInventory().getItemInMainHand().getType() == Material.AIR) {
             player.sendMessage(ConfigVariables.COULD_NOT_SELL);
         } else {
             for (EcoPlayer ecoPlayer : plugin.getEcoPlayers()) {
                 if (ecoPlayer.getOwner().equalsIgnoreCase(player.getUniqueId().toString())) {
-                    for (Type type : plugin.getTypes().values()) {
-                        if (type.getType() != null) {
-                            ItemStack valuable = null;
-                            if (itemStackInHand.hasItemMeta()) {
-                                ItemStack sellAbleItem = null;
-                                if (type.getOutputItem().contains("function")) {
-                                    for (String functionName : plugin.getFunctions().keySet()) {
-                                        String rawFunctionName = StringUtils.substringBetween(type.getOutputItem(), "(", ")");
-                                        if (functionName.equalsIgnoreCase(rawFunctionName)) {
-                                            Configuration config = plugin.getFunctions().get(functionName);
-                                            if (config.getString("function.return").equalsIgnoreCase("ItemStack")) {
-                                                sellAbleItem = new ItemStack(Material.valueOf(config.getString("function.itemstack.material")));
-                                                ItemMeta itemMeta = sellAbleItem.getItemMeta();
-                                                itemMeta.setDisplayName(Utilities.format(config.getString("function.itemstack.display_name")));
-                                                sellAbleItem.setItemMeta(itemMeta);
-                                            }
+                    ItemStack valuable = null;
+                    List<ItemStack> sellAbleItems = new ArrayList<>();
+                    for (String functionName : plugin.getFunctions().keySet()) {
+                        Configuration config = plugin.getFunctions().get(functionName);
+                        if (config.getString("function.return").equalsIgnoreCase("ItemStack")) {
+                            ItemStack sellAbleItem = new ItemStack(Material.valueOf(config.getString("function.itemstack.material")));
+                            ItemMeta itemMeta = sellAbleItem.getItemMeta();
+                            itemMeta.setDisplayName(Utilities.format(config.getString("function.itemstack.display_name")));
+                            sellAbleItem.setItemMeta(itemMeta);
+                            if (player.getInventory().getItemInMainHand().getItemMeta() != null) {
+                                if (player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equalsIgnoreCase(sellAbleItem.getItemMeta().getDisplayName())) {
+                                    valuable = player.getInventory().getItemInMainHand();
+                                    double sellPriceEach = 0;
+                                    for (String loreLine : player.getInventory().getItemInMainHand().getItemMeta().getLore()) {
+                                        if (loreLine.contains("price")) {
+                                            String[] line = loreLine.split(": ");
+                                            sellPriceEach = Double.parseDouble(ChatColor.stripColor(line[1].replace("$", "").trim()));
+                                            ecoPlayer.setBalance(Double.parseDouble(ecoPlayer.getBalance()) + (sellPriceEach * valuable.getAmount()));
                                         }
                                     }
+                                    player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.AIR));
+                                    DecimalFormat df = new DecimalFormat("0.##");
+                                    player.sendMessage(ConfigVariables.SELL_MESSAGE
+                                            .replace("{items}", String.valueOf(valuable.getAmount()))
+                                            .replace("{money}", df.format(new Double(sellPriceEach * valuable.getAmount()))));
+                                    player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
+                                    new Scoreboard(plugin).createScoreboard(player);
                                 }
-                                if (sellAbleItem != null) {
-                                    if (sellAbleItem.getItemMeta().getDisplayName().equalsIgnoreCase(itemStackInHand.getItemMeta().getDisplayName())) {
-                                        valuable = itemStackInHand;
-                                        double sellPriceEach = 0;
-                                        for (String loreLine : itemStackInHand.getItemMeta().getLore()) {
-                                            if (loreLine.contains("price")) {
-                                                String[] line = loreLine.split(": ");
-                                                sellPriceEach = Double.parseDouble(ChatColor.stripColor(line[1].replace("$", "").trim()));
-                                                ecoPlayer.setBalance(Double.parseDouble(ecoPlayer.getBalance()) + (sellPriceEach * valuable.getAmount()));
-                                            }
-                                        }
-                                        player.getInventory().setItem(player.getInventory().getHeldItemSlot(), new ItemStack(Material.AIR));
-                                        DecimalFormat df = new DecimalFormat("0.##");
-                                        player.sendMessage(ConfigVariables.SELL_MESSAGE
-                                                .replace("{items}", String.valueOf(valuable.getAmount()))
-                                                .replace("{money}", df.format(new Double(sellPriceEach * valuable.getAmount()))));
-                                        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
-                                        new Scoreboard(plugin).createScoreboard(player);
-                                    }
-                                } else {
-                                    player.sendMessage(ConfigVariables.COULD_NOT_SELL);
-                                }
-                            }
-                            if (valuable == null) {
-                                player.sendMessage(ConfigVariables.COULD_NOT_SELL);
                             }
                         }
+                    }
+                    if (valuable == null) {
+                        player.sendMessage(ConfigVariables.COULD_NOT_SELL);
+                        System.out.println("t");
                     }
                 }
             }

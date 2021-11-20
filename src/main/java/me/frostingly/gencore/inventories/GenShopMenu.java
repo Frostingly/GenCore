@@ -55,7 +55,15 @@ public class GenShopMenu extends InventoryHandler {
                                                 new ConfirmCancelMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin, new ConfirmCancelMenu.Confirm() {
                                                     @Override
                                                     public void handle(GenCore plugin, Player player) {
-                                                        player.getInventory().addItem(gen.getItemStack());
+
+                                                        player.sendMessage(ConfigVariables.PURCHASED_STORE_ITEM_MESSAGE
+                                                                .replace("{gens}", String.valueOf(1))
+                                                                .replace("{gen_name}", Utilities.format(gen.getItemStack().getItemMeta().getDisplayName()))
+                                                                .replace("{money}", String.valueOf(gen.getCost())));
+
+                                                        ItemStack itemStack = gen.getItemStack();
+                                                        itemStack.setAmount(1);
+                                                        player.getInventory().addItem(itemStack);
                                                         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                                         player.closeInventory();
                                                     }
@@ -76,7 +84,15 @@ public class GenShopMenu extends InventoryHandler {
                                             new ConfirmCancelMenu(ecoPlayer.getPlayerMenuUtility(), player, plugin, new ConfirmCancelMenu.Confirm() {
                                                 @Override
                                                 public void handle(GenCore plugin, Player player) {
-                                                    player.getInventory().addItem(gen.getItemStack());
+
+                                                    player.sendMessage(ConfigVariables.PURCHASED_STORE_ITEM_MESSAGE
+                                                            .replace("{gens}", String.valueOf(1))
+                                                            .replace("{gen_name}", Utilities.format(gen.getItemStack().getItemMeta().getDisplayName()))
+                                                            .replace("{money}", String.valueOf(gen.getCost())));
+
+                                                    ItemStack itemStack = gen.getItemStack();
+                                                    itemStack.setAmount(1);
+                                                    player.getInventory().addItem(itemStack);
                                                     player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                                     player.closeInventory();
                                                 }
@@ -102,9 +118,9 @@ public class GenShopMenu extends InventoryHandler {
                                                         1,
                                                         gen.getCost(),
                                                         Utilities.format(gen.getItemStack().getItemMeta().getDisplayName()),
-                                                        "money", gen.getItemStack(), new AmountMenu.Confirmed() {
+                                                        "money", new AmountMenu.Confirmed() {
                                                     @Override
-                                                    public void handle(GenCore plugin, Player player, int currentAmount, double currentCost, ItemStack good) {
+                                                    public void handle(GenCore plugin, Player player, int currentAmount, double currentCost) {
                                                         ecoPlayer.setBalance(new Double(ecoPlayer.getBalance()) - currentCost);
                                                         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                                         if (currentAmount == 1) {
@@ -118,9 +134,9 @@ public class GenShopMenu extends InventoryHandler {
                                                                     .replace("{gen_name}", Utilities.format(gen.getItemStack().getItemMeta().getDisplayName() + "&as"))
                                                                     .replace("{money}", String.valueOf(currentCost)));
                                                         }
-                                                        ItemStack itemStack = good;
-                                                        itemStack.setAmount(currentAmount);
 
+                                                        ItemStack itemStack = gen.getItemStack();
+                                                        itemStack.setAmount(currentAmount);
                                                         player.getInventory().addItem(itemStack);
                                                         player.closeInventory();
                                                     }
@@ -139,11 +155,11 @@ public class GenShopMenu extends InventoryHandler {
                                                     1,
                                                     gen.getCost()),
                                                     1,
-                                                    100,
+                                                    gen.getCost(),
                                                     Utilities.format(gen.getItemStack().getItemMeta().getDisplayName()),
-                                                    "money", gen.getItemStack(), new AmountMenu.Confirmed() {
+                                                    "money", new AmountMenu.Confirmed() {
                                                         @Override
-                                                        public void handle(GenCore plugin, Player player, int currentAmount, double currentCost, ItemStack good) {
+                                                        public void handle(GenCore plugin, Player player, int currentAmount, double currentCost) {
                                                             player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
                                                             if (currentAmount == 1) {
                                                                 player.sendMessage(ConfigVariables.PURCHASED_STORE_ITEM_MESSAGE
@@ -157,10 +173,8 @@ public class GenShopMenu extends InventoryHandler {
                                                                         .replace("{money}", String.valueOf(currentCost)));
                                                             }
 
-
-                                                            ItemStack itemStack = good;
+                                                            ItemStack itemStack = gen.getItemStack();
                                                             itemStack.setAmount(currentAmount);
-
                                                             player.getInventory().addItem(itemStack);
                                                             player.closeInventory();
                                                             new Scoreboard(plugin).createScoreboard(player);
@@ -186,7 +200,7 @@ public class GenShopMenu extends InventoryHandler {
             ItemMeta itemMeta = itemStack.getItemMeta();
 
             itemMeta.setDisplayName(Utilities.format(gen.getItemStack().getItemMeta().getDisplayName()));
-            itemMeta.setLore(Utilities.formatList(gen.getItemStack().getItemMeta().getLore()));
+            itemMeta.setLore(Utilities.formatList(gen.getDisplayLore()));
 
             itemStack.setItemMeta(itemMeta);
             inventory.setItem(slot, itemStack);
@@ -210,11 +224,7 @@ public class GenShopMenu extends InventoryHandler {
             lore.add("&7&oBuy " + amount + "x " + Utilities.format(genName + "&7&os ") + "for &a" + cost + "&a$!");
         }
         lore.add(" ");
-        if (amount == 1) {
-            lore.add("&bLeft click -> Buy " + amount + "x " + Utilities.format(genName));
-        } else {
-            lore.add("&bLeft click -> Buy " + amount + "x " + Utilities.format(genName + "&bs "));
-        }
+        lore.add("&bLeft click -> Buy " + amount + "x");
         itemMeta.setLore(Utilities.formatList(lore));
         itemStack.setItemMeta(itemMeta);
         return itemStack;

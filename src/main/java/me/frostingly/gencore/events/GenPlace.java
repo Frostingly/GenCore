@@ -2,6 +2,7 @@ package me.frostingly.gencore.events;
 
 import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.gendata.Gen;
+import me.frostingly.gencore.gendata.PurchasableGen;
 import me.frostingly.gencore.gendata.Upgrades;
 import me.frostingly.gencore.playerdata.EcoPlayer;
 import me.frostingly.gencore.Utilities;
@@ -9,6 +10,7 @@ import me.frostingly.gencore.servercore.ConfigVariables;
 import me.frostingly.gencore.servercore.Scoreboard;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
@@ -18,6 +20,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 public class GenPlace implements Listener {
 

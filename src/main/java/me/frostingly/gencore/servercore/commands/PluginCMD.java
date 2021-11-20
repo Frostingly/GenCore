@@ -4,6 +4,7 @@ import me.frostingly.gencore.GenCore;
 import me.frostingly.gencore.Utilities;
 import me.frostingly.gencore.configuration.RegisterFunctions;
 import me.frostingly.gencore.configuration.RegisterGens;
+import me.frostingly.gencore.configuration.RegisterPurchasableGens;
 import me.frostingly.gencore.configuration.RegisterTypes;
 import me.frostingly.gencore.playerdata.EcoPlayer;
 import me.frostingly.gencore.servercore.ConfigVariables;
@@ -144,6 +145,7 @@ public class PluginCMD implements CommandExecutor {
                                 new RegisterFunctions(plugin).regFunctions();
                                 new RegisterTypes(plugin).regTypes();
                                 new RegisterGens(plugin).regGens();
+                                new RegisterPurchasableGens(plugin).regPurchasableGens();
                                 sender.sendMessage(Utilities.format("&aSuccessfully reloaded."));
                             } else {
                                 sender.sendMessage(ConfigVariables.NO_PERMISSION_CMD);
@@ -265,6 +267,7 @@ public class PluginCMD implements CommandExecutor {
                                                     ecoPlayer.setTokens(0);
                                                     ecoPlayer.setWithdrew(false);
                                                 }
+                                                player.getInventory().clear();
                                             }
                                         } else {
                                             if (ecoPlayer.getOwner().equalsIgnoreCase(offlinePlayer.getUniqueId().toString())) {

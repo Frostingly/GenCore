@@ -14,7 +14,7 @@ messages:
   NOT_ENOUGH_DOLLARS_MESSAGE: "&cYou don't have enough dollars for this"
   GEN_CAP_REACHED_MESSAGE: "&6&lGEN CAP REACHED! &cTo increase the cap, buy a rank at /buy"
 
-  PURCHASED_TOKENS_MESSAGE: "&aYou have purchased {tokens}x tokens for {money}$!"
+  PURCHASED_TOKENS_MESSAGE: "&aYou have purchased {tokens}x &atokens for {money}$!"
   PURCHASED_STORE_ITEM_MESSAGE: "&aYou have purchased {gens}x {gen_name} &afor {money}$!"
 
   ECO_PLAYER_NO_EXIST: "&cYou have already started!"
@@ -24,3 +24,5 @@ messages:
       message: "&c/gamemode <creative|survival|adventure|spectator>"
     plugin_cmd:
       message: "&c/gc <reload|wand|gen|balance|wipe>"
+    sell_cmd:
+      message: "&c/sell <all>"
